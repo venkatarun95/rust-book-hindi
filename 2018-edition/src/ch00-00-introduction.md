@@ -1,13 +1,13 @@
-# Introduction
+# परिचय
 
-> Note: This edition of the book is the same as [The Rust Programming
-> Language][nsprust] available in print and ebook format from [No Starch
-> Press][nsp].
+> यह किताब वह अंगरेज़ी किताब का अनुवाद है जो [The Rust Programming
+> Language][nsprust] मे छापा गया है, और [No Starch Press][nsp] से ई-पुस्तक
+> (इलेंक्रंनिक पुस्तक) के रूप मे उप्लब्ध है
 
 [nsprust]: https://nostarch.com/rust
 [nsp]: https://nostarch.com/
 
-> लैंग्वेज
+# भाषा/लैंग्वेज
 
 आप्का *रस्ट प्रोग्रामिंग भाषा (Rust Programming Language)* में स्वागत है। यह
 रस्ट के बारे मे एक परिच्यात्मक किताब है। रस्ट प्रोग्रामिंग लैंग्वेज आप्को ज्यादा
@@ -20,11 +20,6 @@
 ## रस्ट किस के लिये है?
 
 खूब सारे लोगों के लिये। कुछ उदाहरण देखते है।
-
-<!-- ## Who Rust Is For
-
-Rust is ideal for many people for a variety of reasons. Let’s look at a few of
-the most important groups. -->
 
 ### प्रोग्रामर के दलों के लिये
 
@@ -50,29 +45,6 @@ completion), और गलतियों को लिख्ते हुए �
 
 इन सधनों को उप्योग कर, प्रोग्रामर तेजी से कोङ लिख सक्ते है।
 
-<!-- ### Teams of Developers
-
-Rust is proving to be a productive tool for collaborating among large teams of
-developers with varying levels of systems programming knowledge. Low-level code
-is prone to a variety of subtle bugs, which in most other languages can be
-caught only through extensive testing and careful code review by experienced
-developers. In Rust, the compiler plays a gatekeeper role by refusing to
-compile code with these elusive bugs, including concurrency bugs. By working
-alongside the compiler, the team can spend their time focusing on the program’s
-logic rather than chasing down bugs.
-
-Rust also brings contemporary developer tools to the systems programming world:
-
-* Cargo, the included dependency manager and build tool, makes adding,
-  compiling, and managing dependencies painless and consistent across the Rust
-  ecosystem.
-* Rustfmt ensures a consistent coding style across developers.
-* The Rust Language Server powers Integrated Development Environment (IDE)
-  integration for code completion and inline error messages.
-
-By using these and other tools in the Rust ecosystem, developers can be
-productive while writing systems-level code. -->
-
 ### छात्र
 
 रस्ट छत्रों और ऐसे जनों के लिये है, जो कम्प्युटर सिस्टम के बारे मे सिख्ना चाहते
@@ -83,39 +55,16 @@ productive while writing systems-level code. -->
 प्रोग्रामिंग के अवधारण, अधिक से अधिक् लोगों तक पहुंचे, खास तौर पर वह जन, जो पहली
 बार प्रोग्राम करना सीख रहे हैं।
 
-<!-- ### Students
-
-Rust is for students and those who are interested in learning about systems
-concepts. Using Rust, many people have learned about topics like operating
-systems development. The community is very welcoming and happy to answer
-student questions. Through efforts such as this book, the Rust teams want to
-make systems concepts more accessible to more people, especially those new to
-programming. -->
-
 ### कम्पनियां
 
 कई सौ कम्पनियां, बङी और छोटि, रस्ट को उत्पदन मे प्रोयोग कर्तिं हैं. "फ़ायरफ़ॉक्स
 ब्राउज़र" जैसी कई उत्पादनों मे रस्ट का प्रयोग है।
 
-<!-- ### Companies
-
-Hundreds of companies, large and small, use Rust in production for a variety of
-tasks. Those tasks include command line tools, web services, DevOps tooling,
-embedded devices, audio and video analysis and transcoding, cryptocurrencies,
-bioinformatics, search engines, Internet of Things applications, machine
-learning, and even major parts of the Firefox web browser. -->
-
-### खुला स्त्रोत
+### खुले स्त्रोत के प्रोग्रांमर
 
 रस्ट उन जनों के लिये खास तौर पर है, जो रस्ट भाषा, समज, रस्ट प्रोग्रामर के साधन,
 और "लाइब्रेरी" (libraries) बनाने मे मदद कर्ना चाहते हैं। हमे बहुत खुशी होगी अगर
 आप रस्ट भाषा मे किसी भी तौर पर योग्दान करना चाहें।
-
-<!-- ### Open Source Developers
-
-Rust is for people who want to build the Rust programming language, community,
-developer tools, and libraries. We’d love to have you contribute to the Rust
-language. -->
 
 ### जो जन रफ़्तार और स्थिरता पसंद करते हैं
 
@@ -135,23 +84,6 @@ language. -->
 वो आगे से करना न पङे। क्रिपया रस्ट का इस्तेमाल करें और देखें की वह आपके जरूरतों
 को पूरा कर्ता है, की नही।
 
-<!-- ### People Who Value Speed and Stability
-
-Rust is for people who crave speed and stability in a language. By speed, we
-mean the speed of the programs that you can create with Rust and the speed at
-which Rust lets you write them. The Rust compiler’s checks ensure stability
-through feature additions and refactoring. This is in contrast to the brittle
-legacy code in languages without these checks, which developers are often
-afraid to modify. By striving for zero-cost abstractions, higher-level features
-that compile to lower-level code as fast as code written manually, Rust
-endeavors to make safe code be fast code as well.
-
-The Rust language hopes to support many other users as well; those mentioned
-here are merely some of the biggest stakeholders. Overall, Rust’s greatest
-ambition is to eliminate the trade-offs that programmers have accepted for
-decades by providing safety *and* productivity, speed *and* ergonomics. Give
-Rust a try and see if its choices work for you. -->
-
 ## यह किताब किस के लिये है?
 
 यह किताब मानता है की आपने किसी और प्रोग्रामिंग भाषा का पहले प्रयोग किया है, चाहे
@@ -160,15 +92,6 @@ Rust a try and see if its choices work for you. -->
 क्या है, य उस्के बारे में कैसे सोचना चाहिये। अगर पहले आपने कभी प्रोग्रामिंग नही
 करी है, तो आपको किसी ऐसी किताब पढने से फ़ायदा होगा जो प्रोग्रामिन्ग का एक सरल
 परिचय दे।
-
-<!-- ## Who This Book Is For
-
-This book assumes that you’ve written code in another programming language but
-doesn’t make any assumptions about which one. We’ve tried to make the material
-broadly accessible to those from a wide variety of programming backgrounds. We
-don’t spend a lot of time talking about what programming *is* or how to think
-about it. If you’re entirely new to programming, you would be better served by
-reading a book that specifically provides an introduction to programming. -->
 
 ## किताब का उपयोग
 
@@ -190,30 +113,6 @@ reading a book that specifically provides an introduction to programming. -->
 प्रणाली का परिचय देता है। यदी आप ऐसे छात्र हैं, जो कुछ करने से पहले सब कुछ
 विस्तार से जन्ना चहते हैं, तो आप अध्याय २ को पहले छोङ कर, बादमे भी आ सकते हैं।
 
-<!-- ## How to Use This Book
-
-In general, this book assumes that you’re reading it in sequence from front to
-back. Later chapters build on concepts in earlier chapters, and earlier
-chapters might not delve into details on a topic; we typically revisit the
-topic in a later chapter.
-
-You’ll find two kinds of chapters in this book: concept chapters and project
-chapters. In concept chapters, you’ll learn about an aspect of Rust. In project
-chapters, we’ll build small programs together, applying what you’ve learned so
-far. Chapters 2, 12, and 20 are project chapters; the rest are concept chapters.
-
-Chapter 1 explains how to install Rust, how to write a Hello, world! program,
-and how to use Cargo, Rust’s package manager and build tool. Chapter 2 is a
-hands-on introduction to the Rust language. Here we cover concepts at a high
-level, and later chapters will provide additional detail. If you want to get
-your hands dirty right away, Chapter 2 is the place for that. At first, you
-might even want to skip Chapter 3, which covers Rust features similar to those
-of other programming languages, and head straight to Chapter 4 to learn about
-Rust’s ownership system. However, if you’re a particularly meticulous learner
-who prefers to learn every detail before moving on to the next, you might want
-to skip Chapter 2 and go straight to Chapter 3, returning to Chapter 2 when
-you’d like to work on a project applying the details you’ve learned. -->
-
 अध्याय ५ `struct` और 'method' की चर्चा कर्ता है, वुर अध्याय ६ `enum`, `match` और
 `if let` की। आप `struct` और `enum` के जरिये रस्ट मे अपने खुद के "टायिप" (type)
 बनायेंगे।
@@ -231,24 +130,6 @@ Interface) बाहर की दुनिया के लिये प्र�
 अह्द्याय ११ मे कोङ के जांच क चर्चा है, जो रस्ट मे लिखे गये कोङ के बावजूत ज़रोओरी
 है। अध्याय १२ मे हम `grep` नामक एक साधन का एक छोता रूप बनाएंगे जो फ़ैलों मे
 "टेक्स्ट" ढुंङने मे काम आता है। इसके लिये हम पुराने अध्यायनों मे से कै सीखों का उप्योग करेंगे।
-
-<!-- Chapter 5 discusses structs and methods, and Chapter 6 covers enums, `match`
-expressions, and the `if let` control flow construct. You’ll use structs and
-enums to make custom types in Rust.
-
-In Chapter 7, you’ll learn about Rust’s module system and about privacy rules
-for organizing your code and its public Application Programming Interface
-(API). Chapter 8 discusses some common collection data structures that the
-standard library provides, such as vectors, strings, and hash maps. Chapter 9
-explores Rust’s error-handling philosophy and techniques.
-
-Chapter 10 digs into generics, traits, and lifetimes, which give you the power
-to define code that applies to multiple types. Chapter 11 is all about testing,
-which even with Rust’s safety guarantees is necessary to ensure your program’s
-logic is correct. In Chapter 12, we’ll build our own implementation of a subset
-of functionality from the `grep` command line tool that searches for text
-within files. For this, we’ll use many of the concepts we discussed in the
-previous chapters. -->
 
 अध्याय १३ मे "च्लोज़र" (closure) और "इटरैटर" (iterator) की चर्चा है: रस्ट के वो
 अंक जो "फ़ंच्शनल प्रोग्रामिंग" (functional programming) से आते हैं। अध्यायन १४
@@ -283,53 +164,9 @@ previous chapters. -->
 रखियेगा की इस किताब मे हर कोङ का उदाहरण कंपाइल नही होग। इन उदाहरणों मे हम आप्को
 यह भी बतयेंगे की कंपाइलर के सन्देश पधकर सही कोङ कैसे लिखते हैं।
 
-<!-- Chapter 13 explores closures and iterators: features of Rust that come from
-functional programming languages. In Chapter 14, we’ll examine Cargo in more
-depth and talk about best practices for sharing your libraries with others.
-Chapter 15 discusses smart pointers that the standard library provides and the
-traits that enable their functionality.
-
-In Chapter 16, we’ll walk through different models of concurrent programming
-and talk about how Rust helps you to program in multiple threads fearlessly.
-Chapter 17 looks at how Rust idioms compare to object-oriented programming
-principles you might be familiar with.
-
-Chapter 18 is a reference on patterns and pattern matching, which are powerful
-ways of expressing ideas throughout Rust programs. Chapter 19 contains a
-smorgasbord of advanced topics of interest, including unsafe Rust and more
-about lifetimes, traits, types, functions, and closures.
-
-In Chapter 20, we’ll complete a project in which we’ll implement a low-level
-multithreaded web server!
-
-Finally, some appendixes contain useful information about the language in a
-more reference-like format. Appendix A covers Rust’s keywords, Appendix B
-covers Rust’s operators and symbols, Appendix C covers derivable traits
-provided by the standard library, and Appendix D covers macros.
-
-There is no wrong way to read this book: if you want to skip ahead, go for it!
-You might have to jump back to earlier chapters if you experience any
-confusion. But do whatever works for you.
-
-An important part of the process of learning Rust is learning how to read the
-error messages the compiler displays: these will guide you toward working code.
-As such, we’ll provide many examples of code that doesn’t compile along with
-the error message the compiler will show you in each situation. Know that if
-you enter and run a random example, it may not compile! Make sure you read the
-surrounding text to see whether the example you’re trying to run is meant to
-error. In most situations, we’ll lead you to the correct version of any code
-that doesn’t compile. -->
-
 ## किताब के फ़ाइल
 
 जिन "फ़ाइलों" (files) से हमने यह किताब लिखा है, वह आप निम्न लिंक पर पा सकते हैं।
 [GitHub][book].
 
 [book]: https://github.com/rust-lang/book/tree/master/second-edition/src
-
-<!-- ## Source Code
-
-The source files from which this book is generated can be found on
-[GitHub][book].
-
-[book]: https://github.com/rust-lang/book/tree/master/second-edition/src -->
