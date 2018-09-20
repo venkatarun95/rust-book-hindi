@@ -1,137 +1,134 @@
-## Installation
+## रस्ट चलाना
 
-The first step is to install Rust. We’ll download Rust through `rustup`, a
-command line tool for managing Rust versions and associated tools. You’ll need
-an internet connection for the download.
+सबसे पहले हम रस्ट चलाना सीखते हैं। रस्ट को आप `rustup` के ज़रिये "ङाउन्लोङ"
+(download) कर सकते हैं, एक कमांड लाइन साधन जो रस्ट और उस्के सम्बंधित साधनों को
+संभालने के लिये बना है। इस के लिये आप को इंटर्नेट की ज़रूरत होगी।
 
-> Note: If you prefer not to use `rustup` for some reason, please see [the Rust
-> installation page](https://www.rust-lang.org/install.html) for other options.
+> अगर आप किसी कारण से `rustup` का उप्योग नही करना चाहते, तो क्रिपया और विकल्पों
+> के liye [the Rust installation page](https://www.rust-lang.org/install.html)
+> देखें।
 
-The following steps install the latest stable version of the Rust compiler.
-Rust’s stability guarantees ensure that all the examples in the book that
-compile will continue to compile with newer Rust versions. The output might
-differ slightly between versions, because Rust often improves error messages
-and warnings. In other words, any newer, stable version of Rust you install
-using these steps should work as expected with the content of this book.
+निम्नलिखित कदम रस्ट के स्थिर कंपाइलर रूप चलायेंगे। रस्ट समाज यह वादा कर्ता है की
+इस किताब के सारे उदहरण रस्ट के आगे आने वाले रस्ट के स्थिर कंपाइलरों मे भी
+छलेंगी। हो सकत है की एरर संदेश जरा सा बदल जाऎं, क्युंकि रस्ट अक्सर उंहे सुधारता
+रहता है। आप यह जानलें की रस्ट के स्थिर रूप जो आप इन अनुगेशों से छलायेंगे वह इस
+किताब मे दिये उदहरनों के साथ चलना चाहिये। हमारी यही कोशिश रहेगी।
 
-> ### Command Line Notation
+> ### कमांड-लाइन नोटेशन (command line notation)
 >
-> In this chapter and throughout the book, we’ll show some commands used in the
-> terminal. Lines that you should enter in a terminal all start with `$`. You
-> don’t need to type in the `$` character; it indicates the start of each
-> command. Lines that don’t start with `$` typically show the output of the
-> previous command. Additionally, PowerShell-specific examples will use `>`
-> rather than `$`.
+> इस अध्यायन और पूरे किताब मे, हम टर्मिनल (terminal) मे चलने वालीं कई आदेश/कमांङ
+> (command) दिखायेंगे। टर्मिनल मे जो वाक्य आप्को लिख्ना है, वो हम `$` से चालू
+> करेंगे। आप्को `$` लिखने की ज़रूरत नही है; वह सिर्फ़ आप्के लिये अर्थ स्पर्ष
+> कर्ने के लिये है। जो वाक्य `$` से नही चालू होते, वह आम तौर पर किसी टर्मिनल के
+> आदेश का परिणाम/आउट्पुट (output) होंगे। और भी, जो उदाहरण पांवर-शेल (power
+> shell) के लिये विशिष्ट हैं, वह `$` के बदले `>` का इस्तेमाल करेंगे।
 
-### Installing `rustup` on Linux or macOS
+### अपने लिनक्स (Linux) या मैक-ओ.एस. (macOS) चंप्यूटर पर `rustup` चलाना
 
-If you’re using Linux or macOS, open a terminal and enter the following command:
+अगर आप  लिनक्स (Linux) या मैक-ओ.एस. (macOS) चंप्यूटर इस्तेमाल कर रहे हैं, तो
+निम्न्लिखित आदेश को अपने कमांड-लाइन पर चलाईये।
 
 ```text
 $ curl https://sh.rustup.rs -sSf | sh
 ```
 
-The command downloads a script and starts the installation of the `rustup`
-tool, which installs the latest stable version of Rust. You might be prompted
-for your password. If the install is successful, the following line will appear:
+यह एक स्क्रिप्ट (script) को दाउन्लोङ कर, `rustup` चलाने की तैयारी कर्ता है। हो
+सकता है की आप्को अपने चम्प्यूटर की पास्वर्ङ (password) की ज़रूरत पङे। अगर यह सफल
+रहा, तो निम्न्लिखित वक्य आयेगा:
 
 ```text
 Rust is installed now. Great!
 ```
 
-If you prefer, feel free to download the script and inspect it before running
-it.
+अगर आप पसंद करें, तो चलाने से पहले स्क्रिप्ट को पङकर देख लें।
 
-The installation script automatically adds Rust to your system PATH after your
-next login. If you want to start using Rust right away instead of restarting
-your terminal, run the following command in your shell to add Rust to your
-system PATH manually:
+यह स्क्रिप्ट अपने आप रस्ट को आपके "PATH" मे ङाल देगा, जब आप फिर से टर्मिनल
+चलायेंगे। अगर आप तुरंत ही रस्ट चलाना चाहते हैं, तो निम्नलिखित वख्य अपने टर्मिनल
+मे चलायें।
 
 ```text
 $ source $HOME/.cargo/env
 ```
 
-Alternatively, you can add the following line to your *~/.bash_profile*:
+वैकल्पिक रूप से, आप यह वाक्य, अपने *~/.bash_profile* फ़ाइल मे भी जोङ सकते हैं।
 
 ```text
 $ export PATH="$HOME/.cargo/bin:$PATH"
 ```
 
-Additionally, you’ll need a linker of some kind. It’s likely one is already
-installed, but when you try to compile a Rust program and get errors indicating
-that a linker could not execute, that means a linker isn’t installed on your
-system and you’ll need to install one manually. C compilers usually come with
-the correct linker. Check your platform’s documentation for how to install a C
-compiler. Also, some common Rust packages depend on C code and will need a C
-compiler. Therefore, it might be worth installing one now.
+आपको किसी प्रकार के "लिंकर" (Linker) की भी ज़रूरत होगी। अच्छी संभावना है की आपके
+कंप्युटर मे वह पहले से ही है। लेकिन अगर आपको किसी रस्ट प्रोग्राम को "कंपाईल"
+करते हुए संदेश मिले की लिंकर नही मिला, इस्का यह अर्थ है की आपके कंम्प्युटर मे
+लिंकर नही है, और आपको खुद इंस्टाल करना पढेगा। सामान्य तौर पर "C" कंपाईलरों एक
+सही लिंकर के साथ ही आते हैं। क्रिप्या अपने "प्लैट्फ़रम" (अपने कंप्युटर) के
+प्रलोख मे देखें की "C" कंपाईलर कैसे इंस्टाल करते है। साथ ही, कई सामन्य रस्ट के
+"पैकेज" "C" पर निर्भर हैं, और इसके लिये आपको "C" कंपाईलर कि ज़रूरत होगी। इसिलिये
+अभी "C" कंपाइलर इंस्टाल कर्ना अच्छा होगा।
 
-### Installing `rustup` on Windows
+### "विंङोज़" (Windows) मे `rustup` चलाना
 
-On Windows, go to [https://www.rust-lang.org/install.html][install] and follow
-the instructions for installing Rust. At some point in the installation, you’ll
-receive a message explaining that you’ll also need the C++ build tools for
-Visual Studio 2013 or later. The easiest way to acquire the build tools is to
-install [Build Tools for Visual Studio 2017][visualstudio]. The tools are in
-the Other Tools and Frameworks section.
+विंदोज़ मे क्रिपया [https://www.rust-lang.org/install.html][इंस्टाल] पर जाईये और
+वहां दिये गए निर्देशों का पलन करें। इंस्टाल करते समय आपको संदेश मिलेगा की आपकोओ
+"C++" बनाने के सुविधाओं की ज़रुरत होगी जो (Visual Studio २०१३ या उस्से आगे) मे
+उप्लब्ध हैं। इन्कों पाने की सबसे आसान तरीका है की आप [Build Tools for Visual
+Studio 2017][visualstudio] इंस्टाल कर लें। ज़रूरती सुविधायें आपको (Other Tools
+and Frameworks section) भाग मे मिलेंगी।
 
 [install]: https://www.rust-lang.org/install.html
 [visualstudio]: https://www.visualstudio.com/downloads/
 
-The rest of this book uses commands that work in both *cmd.exe* and PowerShell.
-If there are specific differences, we’ll explain which to use.
+अब से हम इस किताब मे वही "कमांङ" (commands) का इस्तेमाल करेंगे जो (*cmd.exe*) और
+(PowerShell) दोनों मे चलें। अगर ऐसा ना हो तो हम आपको बताएंगे की क्या उप्योग करना
+है।
 
-### Updating and Uninstalling
+### रस्ट के सबसे नये रूप को पाना और रस्ट को अपने कंप्यूटर से निकालना
 
-After you’ve installed Rust via `rustup`, updating to the latest version is
-easy. From your shell, run the following update script:
+रस्ट को `rustup` के ज़रिये इंस्टाल करने के बाद, उस्के सबसे नये रूप को पान आसान
+है। बस आपने "तर्मिनल" पर यह चलायें:
 
 ```text
 $ rustup update
 ```
 
-To uninstall Rust and `rustup`, run the following uninstall script from your
-shell:
+रस्ट और `rustup` अपने कंप्यूटर से हटाने के लिये अपने टर्मिनल मे यह चलायें:
 
 ```text
 $ rustup self uninstall
 ```
 
-### Troubleshooting
+### समस्या निवारण
 
-To check whether you have Rust installed correctly, open a shell and enter this
-line:
+रस्ट आपके कंप्यूटर मे सही रूप से इंस्टाल हुआ है की नही, यह जानने के लिये अपने
+टर्मिनल मे यह आदेश चलायें:
 
 ```text
 $ rustc --version
 ```
 
-You should see the version number, commit hash, and commit date for the latest
-stable version that has been released in the following format:
+आपको रस्ट के सबसे नये (stable) रूप के (version number), (commit hash) और (commit
+तारीख) ऐसे दिखेंगे:
 
 ```text
 rustc x.y.z (abcabcabc yyyy-mm-dd)
 ```
 
-If you see this information, you have installed Rust successfully! If you don’t
-see this information and you’re on Windows, check that Rust is in your `%PATH%`
-system variable. If that’s all correct and Rust still isn’t working, there are
-a number of places you can get help. The easiest is [the #rust IRC channel on
-irc.mozilla.org][irc]<!-- ignore -->, which you can access through
-[Mibbit][mibbit]. At that address you can chat with other Rustaceans (a silly
-nickname we call ourselves) who can help you out. Other great resources include
-[the Users forum][users] and [Stack Overflow][stackoverflow].
+अगर ऐसा है, तो रस्ट आपके कंप्यूटर मे सही से इंस्टाल हुआ है! नही तो, यदी आप
+विंदोज़ (Windows) मे हैं, तो सुनिश्चित कर ली जिये की रस्ट आपके `%PATH%` (system
+variable) मे है। अगर अभ भी रस्ट काम नही कर रहा, आप कइ जगहों से मदद ले सकते हैं।
+सबसे आसान तरीका है [irc.mozilla.org][irc]<!-- ignore -->, जो आप [Mibbit][mibbit]
+के ज़रीये पहुंच सकते हैं। यहां पर आप और रस्ट को उपयोग करने वलों से बात कर सकते
+है और मदद ले सकते हैं। इस्के अलावा [the Users forum][users] and [Stack
+Overflow][stackoverflow] भी अच्छे सधन हैं।
 
 [irc]: irc://irc.mozilla.org/#rust
 [mibbit]: http://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust
 [users]: https://users.rust-lang.org/
 [stackoverflow]: http://stackoverflow.com/questions/tagged/rust
 
-### Local Documentation
+### स्थानीय दस्तावेज
 
-The installer also includes a copy of the documentation locally, so you can
-read it offline. Run `rustup doc` to open the local documentation in your
-browser.
+रस्ट के साथ आपके कंप्यूटर मे एक दस्नावेज या प्रलेख भी उपलब्ध है जिसे आप बिना
+इंटरनेट के भी पढ सकते हैं। यह अपने ब्राउज़र मे कोलने के लिये `rustup doc` चलायें।
 
-Any time a type or function is provided by the standard library and you’re not
-sure what it does or how to use it, use the application programming interface
-(API) documentation to find out!
+जब भी आप किसी रस्ट के ज़रिये उप्लब्ध कोइ टायीप (type) या फ़ंक्शन (function) का
+उप्योग नही जानते, आप इस दस्तावेज के जरिये सीख सकते हैं!
