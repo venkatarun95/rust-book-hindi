@@ -1,57 +1,93 @@
-## Hello, Cargo!
+## `Cargo` का उप्योग
 
-Cargo is Rust’s build system and package manager. Most Rustaceans use this tool
-to manage their Rust projects because Cargo handles a lot of tasks for you,
-such as building your code, downloading the libraries your code depends on, and
-building those libraries. (We call libraries your code needs *dependencies*.)
+Cargo रस्ट का "बिल्ङ सिस्टम" (build system) और "पैकेज मैनेजर" (package manager)
+है। ज़्यादातर लोग अपने रस्ट कोङ को संभालने के लिये इस साधन का उप्योग करते हैं
+क्योंकी यह आप के लिये कैइ काम कर देता है। उधाहरण से, कोङ को "बिल्ङ"
+(build)/"कंपाइल" (compile) करना, उन "लाईब्ररीयों" (library) को ङाउनलोङ कर्ना
+जिनपे आप्का कोङ निर्भर है, और फिर उन लाईब्ररीयों को बिल्ङ करना। (जिन लाइब्ररीयों
+पे आप्का कोङ निर्भर है, उनहे हम "ङिपेंङेंसी" (dependency) कहते हैं।)
 
-The simplest Rust programs, like the one we’ve written so far, don’t have any
-dependencies. So if we had built the Hello, world! project with Cargo, it would
-only use the part of Cargo that handles building your code. As you write more
-complex Rust programs, you’ll add dependencies, and if you start a project
-using Cargo, adding dependencies will be much easier to do.
+सरल रस्ट प्रोग्राम, जैसे की हमने अभी तक लिखे हैं, मे कोई ङिपेंङेंसी नही होते।
+इस्लिये, अगर हम अभी `Cargo` के साथ हमारा "Hello, world!" प्रोग्राम बनायें, तो वह
+`Cargo` का वही हिस्सा उप्योग करेगा जो रस्ट कोङ को बिल्ङ/कंपाइल कर्ता है। जब आप
+और बङे और जटिल प्रोग्राम लिखेंगे, आप को ङिपेंङेंसीयों का प्रयोग करना पधेगा। उस
+समय, अगर आप रस्ट कोङ को `Cargo` के साथ बनायें, तो यह काम बहुत सरल होगा।
 
-Because the vast majority of Rust projects use Cargo, the rest of this book
+ज़्यादातर रस्ट कोङ `Cargo` का उप्योग कर्ता हैं, इस्लिये हम इस किताब मे भी यही
+मनेंगे की आप भी रस्ट का उप्योग कर रहे हैं। `Cargo` रस्ट के साथ आता है, अगर आपने
+रस्ट को ऐसे ही इंस्टाल किया है जैसे हमने इस किताब मे बताय है, तो आप के कंप्यूटर
+मे `Cargo` पहले से ही होग। अगर आपने किसी और तरीके से इंस्टाल किया है, तो `Cargo`
+है या नही देखने के लिये अपने टर्मिनल मे निम्नलिखित वक्य लिखें:
+
+<!-- Because the vast majority of Rust projects use Cargo, the rest of this book
 assumes that you’re using Cargo too. Cargo comes installed with Rust if you
 used the official installers discussed in the “Installation” section. If you
 installed Rust through some other means, check whether Cargo is installed by
-entering the following into your terminal:
+entering the following into your terminal: -->
 
 ```text
 $ cargo --version
 ```
 
-If you see a version number, you have it! If you see an error, such as `command
+अगर आप्को एक संस्करण अंक दिखे, तो आप्के पास `Cargo` है, बधाइ हो! अगर आपको एरर
+दिखे, जैसे की `command not found`, तो क्रिपया आपके इंस्टालेशन तरीके के प्रलेखन
+को पङें, और `Cargo` को अलग से इंस्टाल कैसे करते है, यह देख लें।
+
+<!-- If you see a version number, you have it! If you see an error, such as `command
 not found`, look at the documentation for your method of installation to
-determine how to install Cargo separately.
+determine how to install Cargo separately. -->
 
-### Creating a Project with Cargo
+<!-- ### Creating a Project with Cargo -->
+### `Cargo` का उप्योग कर कोङ लिखना चालू करना
 
-Let’s create a new project using Cargo and look at how it differs from our
+चलो `Cargo` का उप्योग करके रस्ट का एक नया प्रोग्राम लिखते हैं, और देखते हैं की
+यह प्रक्रिया आपके पहले वाले `Hello, world!` प्रोग्राम से कैसे अलग है। टर्मिनल मे
+अपने *projects* "फ़ोल्ङर" (folder) (या आपने जहां भी अपने प्रोग्रामों को जहां भी
+लिखना चाहते हैं). फिर, निम्न्लिखित वक्य/आदेश चलायें:
+
+<!-- Let’s create a new project using Cargo and look at how it differs from our
 original Hello, world! project. Navigate back to your *projects* directory (or
 wherever you decided to store your code). Then, on any operating system, run
-the following:
+the following: -->
 
 ```text
 $ cargo new hello_cargo
 $ cd hello_cargo
 ```
 
-The first command creates a new directory called *hello_cargo*. We’ve named
-our project *hello_cargo*, and Cargo creates its files in a directory of the
-same name.
+पहला आदेश *hello_cargo* नमक एक नया फ़ोल्ङर बनाता है। हमने अपने प्रोग्राम को
+*hello_cargo* नाम दिया है, और `Cargo` उसी नाम के एक फ़ोल्ङर मे अपने फ़ाईल बनाता
+है।
 
-Go into the *hello_cargo* directory and list the files. You’ll see that Cargo
+<!-- The first command creates a new directory called *hello_cargo*. We’ve named
+our project *hello_cargo*, and Cargo creates its files in a directory of the
+same name. -->
+
+एक बार *hello_cargo* फ़ोल्ङर जाकर एक बार क्या-क्या फ़ाईल हैं, यह देखें। आपको
+दिखेगा कि `Cargo` ने हमारे लिये दो फ़ाईल और एक फ़ोल्ङर बनाये हैं: एक
+*Cargo.toml* फ़ाईल और एक *src* फ़ोल्ङर जिसके अंदर एक *main.rs* फ़ाईल है। उसने एक
+नया `Git` का कोष भी बनाया है, जिसमे एक *.gitignore* फ़ाइल भी है।
+
+<!-- Go into the *hello_cargo* directory and list the files. You’ll see that Cargo
 has generated two files and one directory for us: a *Cargo.toml* file and a
 *src* directory with a *main.rs* file inside. It has also initialized a new Git
-repository along with a *.gitignore* file.
+repository along with a *.gitignore* file. -->
 
-> Note: Git is a common version control system. You can change `cargo new` to
+> ध्यान दें: `Git` एक प्रचलित "वर्ज़न कंट्रोल सिस्टम" (version control system)
+> है। वह एक ऐस प्रणली है, जिसे लोग अपने प्रोग्रामों को लिखते समय उसके अलग-अलग
+> संस्करणों को संभालने के लिये प्रयोग करते हैं। आप `Git` को छोङ कर किसी और
+> सिस्टम का प्रयोग करना चाहते हैं, तो आप `cargo new` आदेश को बदल सकते हैं
+> `--vcs` "फ़्लैग" (flag) के साथ। आप उपलब्ध विकल्पों का जंच `cargo new --help`
+> के साथ कर सकते हैं।
+
+<!-- > Note: Git is a common version control system. You can change `cargo new` to
 > use a different version control system or no version control system by using
-> the `--vcs` flag. Run `cargo new --help` to see the available options.
+> the `--vcs` flag. Run `cargo new --help` to see the available options. -->
 
-Open *Cargo.toml* in your text editor of choice. It should look similar to the
-code in Listing 1-2.
+आप अपने पसंदिता "तेक्स्ट एङिटर" (text editor) के साथ *Cargo.toml* खोलें, तो आपको वो निम्न्लिखित जैसा दिखेगा.
+
+<!-- Open *Cargo.toml* in your text editor of choice. It should look similar to the
+code in Listing 1-2. -->
 
 <span class="filename">Filename: Cargo.toml</span>
 
@@ -64,8 +100,10 @@ authors = ["Your Name <you@example.com>"]
 [dependencies]
 ```
 
-<span class="caption">Listing 1-2: Contents of *Cargo.toml* generated by `cargo
-new`</span>
+<span class="caption">Listing 1-2: `cargo new` के द्वारा बनाया गया *Cargo.toml*  फ़ाईल</span>
+
+<!-- <span class="caption">Listing 1-2: Contents of *Cargo.toml* generated by `cargo
+new`</span> -->
 
 This file is in the [*TOML*][toml]<!-- ignore --> (*Tom’s Obvious, Minimal
 Language*) format, which is Cargo’s configuration format.

@@ -1,28 +1,29 @@
-## Hello, World!
+## आपका पहला रस्ट प्रोग्राम!
 
-Now that you’ve installed Rust, let’s write your first Rust program. It’s
-traditional when learning a new language to write a little program that prints
-the text `Hello, world!` to the screen, so we’ll do the same here!
+अब जो आपने रस्ट इंस्टाल कर लिया है, चलो आप का पहला रस्ट प्रोग्राम लिख्ते हैं। एक
+परंपरा है की जब हम कोई नया प्रोग्रामिंग भाषा सिख रहे हों, तो एक ऐसा छोटा सा
+प्रोग्राम लिखते हैं, जो स्क्रीन मे `Hello, world!` छाप्ता हो। हम भी इस परंपरा
+पालन करेंगे।
 
-> Note: This book assumes basic familiarity with the command line. Rust makes
-> no specific demands about your editing or tooling or where your code lives, so
-> if you prefer to use an integrated development environment (IDE) instead of
-> the command line, feel free to use your favorite IDE. Many IDEs now have some
-> degree of Rust support; check the IDE’s documentation for details. Recently,
-> the Rust team has been focusing on enabling great IDE support, and progress
-> has been made rapidly on that front!
+> ध्यान दें: यह किताब मानता है की आप "टर्मिनल" के उप्योग (terminal) से परीचित
+> हैं। रस्ट आपको प्रोग्राम करते समय अपने मर्ज़ी के साधन इस्तेमाल करने देता है।
+> आप अपने मरज़ी की एङिटर (text editor) का उपयोग कर सकते हैं, और अपने फ़ाईलों को
+> कहीं भी रख सकते हैं। यदी आप टर्मिनल के बदले अपने पसंदीदा Integrated
+> Development Environment (IDE) का उप्योग कर्ना चाहते है, तो कर सकते हैं। कइ
+> IDE आज कल रस्ट के साथ अच्छे से चलते है; विवरण के लिये उनके प्रलेखन पढे। हाल ही
+> मे, रस्ट समाज रस्ट को IDE के साथ अच्छी तरह काम करवाने के लिये प्रयास कर रहा
+> है, और इस के ओर हमने स्फुरती से प्रगती करी है!
 
-### Creating a Project Directory
+### रस्ट के कोङ के लिये "फ़ोल्ङर" (folder)
 
-You’ll start by making a directory to store your Rust code. It doesn’t matter
-to Rust where your code lives, but for the exercises and projects in this book,
-we suggest making a *projects* directory in your home directory and keeping all
-your projects there.
+आप रस्ट के कोङ को रखने के लिये एक अपने कंप्यूटर मे जगह चुनें। आप रस्ट का कोङ
+कहीं भी रख सकते हैं, लेकिन हमारी सलह यह है की इस किताब मे दिये गये उदहरणों के
+लिये आप एक अलग सी "फ़ोल्ङर" (folder) बनाएं, और वहां ही सारा कोङ रखें।
 
-Open a terminal and enter the following commands to make a *projects* directory
-and a directory for the Hello, world! project within the *projects* directory.
+यह करने के लिये टर्मिनल मे निम्न्लिखित आदेश लिखें। यह आप्की पहली "Hello World"
+प्रोग्राम के लिये भी एक फ़ोल्ङर बनाता है।
 
-For Linux and macOS, enter this:
+लिनक्स और मैक ओ.एस. के लिये यह लिखें:
 
 ```text
 $ mkdir ~/projects
@@ -31,7 +32,7 @@ $ mkdir hello_world
 $ cd hello_world
 ```
 
-For Windows CMD, enter this:
+और विंङोज़ के लिये:
 
 ```cmd
 > mkdir "%USERPROFILE%\projects"
@@ -40,7 +41,7 @@ For Windows CMD, enter this:
 > cd hello_world
 ```
 
-For Windows PowerShell, enter this:
+और विंङोज़ पांवर शेल (PowerShell) के लिये यह:
 
 ```powershell
 > mkdir $env:USERPROFILE\projects
@@ -49,14 +50,14 @@ For Windows PowerShell, enter this:
 > cd hello_world
 ```
 
-### Writing and Running a Rust Program
+### रस्ट प्रोग्राम लिखकर चलाना
 
-Next, make a new source file and call it *main.rs*. Rust files always end with
-the *.rs* extension. If you’re using more than one word in your filename, use
-an underscore to separate them. For example, use *hello_world.rs* rather than
-*helloworld.rs*.
+कोङ के लिये *main.rs* नामक एक फ़ाइल बनाएं। रस्ट फ़ाइल हमेशा *.rs* से समाप्त होते
+हैं। अगर आप फ़ाइल के नाम के लिये एक से अधिक शब्द प्रयोग कर रहे हैं, तो शब्दों को
+_ के साथ अलग करें। अधहरण से, *hello_world.rs* इस्तेमाल करें, *helloworld.rs*
+नही।
 
-Now open the *main.rs* file you just created and enter the code in Listing 1-1.
+अभ आपने जो *main.rs* फ़ाइल बनाय, उसे खोलें और निम्न्लिखित कोङ उसमे लिखें।
 
 <span class="filename">Filename: main.rs</span>
 
@@ -66,10 +67,10 @@ fn main() {
 }
 ```
 
-<span class="caption">Listing 1-1: A program that prints `Hello, world!`</span>
+<span class="caption">सूचीकरण 1-1: प्रोग्राम जो `Hello, world!` लिखता है</span>
 
-Save the file and go back to your terminal window. On Linux or macOS, enter
-the following commands to compile and run the file:
+फ़ाइल सेव करें और टर्मिनल पर वापस जायें। अगर आप लिनक्स या मैक ओ.एस. मे हैं, तो
+अपने प्रोग्राम को कंपाइल करके चलाने के लिये टर्मिनल मे यह आदेश चलाएं:
 
 ```text
 $ rustc main.rs
@@ -77,7 +78,7 @@ $ ./main
 Hello, world!
 ```
 
-On Windows, enter the command `.\main.exe` instead of `./main`:
+विंङोज़ मे `./main` के बदले `.\main.exe` लिखें:
 
 ```powershell
 > rustc main.rs
@@ -85,17 +86,16 @@ On Windows, enter the command `.\main.exe` instead of `./main`:
 Hello, world!
 ```
 
-Regardless of your operating system, the string `Hello, world!` should print to
-the terminal. If you don’t see this output, refer back to the “Troubleshooting”
-part of the Installation section for ways to get help.
+आप चाहें जो भी आंपरेटिंग सिस्टम मे हैं, आपको टर्मिनल मे `Hello, world!` दिख्ना
+चाहिये। नही तो मदद के लिये, पिछले "रस्ट चलाना" अध्यायन का "समस्या निवारण" भाग देखें।
 
-If `Hello, world!` did print, congratulations! You’ve officially written a Rust
-program. That makes you a Rust programmer—welcome!
+अगर आपके प्रोग्राम ने वस्तव मे `Hello, world!` छापा, तो बधाई हो! आपने एक रस्ट
+प्रोग्राम लिख लिय है। अब आप एक रस्ट प्रोग्रांमर हैं। स्वागत है!
 
-### Anatomy of a Rust Program
+### रस्ट प्रोग्राम का ढांचा
 
-Let’s review in detail what just happened in your Hello, world! program.
-Here’s the first piece of the puzzle:
+चलो गौर से देखते हैं की अभी आपके `Hello, World!` प्रोग्राम मे क्या हुअ। पहेली का
+पहला हिस्सा यह है:
 
 ```rust
 fn main() {
@@ -103,70 +103,69 @@ fn main() {
 }
 ```
 
-These lines define a function in Rust. The `main` function is special: it is
-always the first code that runs in every executable Rust program. The first
-line declares a function named `main` that has no parameters and returns
-nothing. If there were parameters, they would go inside the parentheses, `()`.
+यह वाख्य रस्ट मे एक "फ़ंक्शन" (function) घोषित करते हैं। `main` नामक फ़ंक्शन
+विशेश है: यह किसी भी रस्ट प्रोग्राम मे चलने वाला पहला कोङ है। पहला वाक्य `main`
+फ़ंक्शन घोषित करते हैं, जो कोइ "पैरामीटर" (parameter) नही लेता। अगर पैरामीटर
+होते, तो यह `()` के अंदर जाते।
 
-Also, note that the function body is wrapped in curly brackets, `{}`. Rust
-requires these around all function bodies. It’s good style to place the opening
-curly bracket on the same line as the function declaration, adding one space in
-between.
+और भि, ध्यान दें की फ़ंक्शन का शरीर `{}` के अंदर है। रस्ट मे हर फ़ंक्शन का शरीर
+`{}` के अंदर होना ज़रूरी है। अच्छा होगा की अगर फ़ंक्शन को घोषित करने के बाद, एक
+जगह छोङकर `{` को उसी रेखा मे लिखें तो।
 
-At the time of this writing, an automatic formatter tool called `rustfmt` is
-under development. If you want to stick to a standard style across Rust
-projects, `rustfmt` will format your code in a particular style. The Rust team
-plans to eventually include this tool with the standard Rust distribution, like
-`rustc`. So depending on when you read this book, it might already be installed
-on your computer! Check the online documentation for more details.
+यह किताब लिखते समय, `rustfmt` नामक एक "आंटोमैटिक फ़ंर्मैटर" साधन का निर्माण हो
+रहा था। यह "आंटोमैटिक फ़ंर्मैटर" आपके रस्ट कोङ को विशेष रूप से फार्मेट/प्रारूप
+देता है, जिस्से आप अपने सारे रस्ट कोङ को एक सुसंगत शैली दे सकते है। रस्ट दल
+का इरादा है इस साधन को सामन्य रस्ट साधनों के साथ बांट गें। हो सकता है कि जब तक
+आप इस किताब को पढ रहें है, आपके कंप्यूटर मे यह साधन पहले से ही हो। विवरण के लिये
+आप ऑनलाइन दस्तावेज पढ सकते हैं।
 
-Inside the `main` function is the following code:
+`main` फ़ंक्शन के अंदर निम्न्लिखित कोङ है:
 
 ```rust
     println!("Hello, world!");
 ```
 
-This line does all the work in this little program: it prints text to the
-screen. There are four important details to notice here. First, Rust style is
-to indent with four spaces, not a tab.
+इस छोटे से प्रोग्राम का सारा काम, यही वक्य कर्ता है: वे अक्शरों को स्क्रीन पर
+छापता है। यहं देखने के लिये चार महत्वपूर्ण चीज़ें हैं। पहला, रस्ट की शैली है की
+"इंङेंट" (indent) करने के लिये छार "स्पेस" (space) इस्तेमाल करना, एक "टैब" (tab)
+नही।
 
-Second, `println!` calls a Rust macro. If it called a function instead, it
-would be entered as `println` (without the `!`). We’ll discuss Rust macros in
-more detail in Appendix D. For now, you just need to know that using a `!`
-means that you’re calling a macro instead of a normal function.
+दोओसरा, `println!` एक रस्ट के "मैक्रो" (macro) बुलाता है। अगर यह फ़ंक्शन होता,
+तो इसे हम `println` (बिना `!` के) लिकते। हम मैक्रो की अधिक विवरण Appendix D मे
+करेंगे। अभी के लिये, केवल इतना जान लें की `!` का अर्थ है की आप एक साधारण फ़ंक्शन
+की जगह एक मैक्रो को बुला रहे हैं।
 
-Third, you see the `"Hello, world!"` string. We pass this string as an argument
-to `println!`, and the string is printed to the screen.
+तीस्रा, आप "Hello, World!" पर गौर की जिये। हम इसे `println!` को पैरामीटर के रूप
+मे देते है, और वो स्क्रीन मे छप जाता है।
 
-Fourth, we end the line with a semicolon (`;`), which indicates that this
-expression is over and the next one is ready to begin. Most lines of Rust code
-end with a semicolon.
+छौथा, हम इस वाक्य को `;` से अंत करते है, जो बताता है की इस वाक्य का अंत हो गया
+है, और अगला वक्य चालू हो सकता है। रस्ट के ज्यादातर वक्य `;` से अंत होते है।
 
-### Compiling and Running Are Separate Steps
+### कंपाइल करना और चलाना अलग अलग कदम हैं
 
-You’ve just run a newly created program, so let’s examine each step in the
-process.
+आपने अभी अभी एक नया प्रोग्राम बनाया है, चलो इस्के एक एक कदम को अच्छे से देखते है।
 
-Before running a Rust program, you must compile it using the Rust compiler by
-entering the `rustc` command and passing it the name of your source file, like
-this:
+रस्ट प्रोग्राम चलाने से पहले, आपको उसे कंपाइल करना पधेगा, जो आप `rustc` आदेश को
+फ़ाइल का नाम देकर कर सकते है, जैसे:
 
 ```text
 $ rustc main.rs
 ```
 
-If you have a C or C++ background, you’ll notice that this is similar to `gcc`
-or `clang`. After compiling successfully, Rust outputs a binary executable.
+अगर आप "C" या "C++" से परीचित हैं, तो आप देख सकते हैं की यह `gcc` और `clang` के
+समान है। सफलतापुर्वक कंपाइल होने के बाद, रस्ट एक "बाइनरी एग्सेक्यूटेबल" (binary
+executable) फ़ाइल बनाता है। बाइनरी फ़ाइल ऐसे फ़ाइल होते हैं जो कंप्यूटर मे
+प्रोग्राम के रूप मे सिधा चल सकते है।
 
-On Linux and macOS you can see the executable by entering the `ls` command in
-your shell as follows:
+लिनक्स और मैक ओ. एस. मे आप इसे `ls` आदेश का उपयोग करके देख सकते हैं:
 
 ```text
 $ ls
 main  main.rs
 ```
 
-With PowerShell on Windows, you can use `ls` as well, but you'll see three files:
+विंदोज़ के पांवर-शेल (PowerShell) मे भी आप `ls` का उपयोग कर सकते है, पर आप तीन
+फ़ाइल देखेंगे:
 
 ```text
 > ls
@@ -182,7 +181,7 @@ Mode                LastWriteTime         Length Name
 -a----         6/1/2018   7:31 AM             14 main.rs
 ```
 
-With CMD on Windows, you would enter the following:
+विंदोज़ के CMD मे आप यह लिखेंगे:
 
 ```cmd
 > dir /B %= the /B option says to only show the file names =%
@@ -191,28 +190,32 @@ main.pdb
 main.rs
 ```
 
-This shows the source code file with the *.rs* extension, the executable file
-(*main.exe* on Windows, but *main* on all other platforms), and, when using
-CMD, a file containing debugging information with the *.pdb* extension. From
-here, you run the *main* or *main.exe* file, like this:
+यह दिखाता है (१) nरस्ट का "सोर्स फ़ाइल" (source file), जिसके नाम का अंत *.rs* से
+होता है (यह वही फ़ाइल है, जिसमे आपने अभी अभी कोङ लिखा), (२) "एग्सेक्यूटेबल"
+फ़ाइल (विन्दोज़ मे इस्का नाम *main.exe* है, पर और जगह *main* है), और CMD
+इस्तेमाल करते समय, एक ऐसा फ़ाइल जिसमे ङीबग (प्रोग्राम मे गलतीयं खोजना) करने के
+लिये जानकारी हो, और जिस्का नाम *.pdb* से अंत होता है। यहं से आप *main* या
+*main.exe* फ़ाइल ऐसे चला सकते हैं:
 
 ```text
-$ ./main # or .\main.exe on Windows
+$ ./main # या  विंङोज़ मे .\main.exe
 ```
 
-If *main.rs* was your Hello, world! program, this line would print `Hello,
-world!` to your terminal.
+अगर *main.rs* आप्का अभी का बनाय हुआ प्रोग्राम था, तो यह आपके टर्मिनल मे `Hello,
+world!` छापेगा।
 
-If you’re more familiar with a dynamic language, such as Ruby, Python, or
-JavaScript, you might not be used to compiling and running a program as
-separate steps. Rust is an *ahead-of-time compiled* language, meaning you can
-compile a program and give the executable to someone else, and they can run it
-even without having Rust installed. If you give someone a *.rb*, *.py*, or
-*.js* file, they need to have a Ruby, Python, or JavaScript implementation
-installed (respectively). But in those languages, you only need one command to
-compile and run your program. Everything is a trade-off in language design.
+अगर आप "रूबी" (Ruby), "पाइथन" (Python) या "जावास्क्रिप्ट" (Javascript) जैसे
+भाषाओं के साथ ज्यादा परिचित हैं, तो हो सकता है की आपको प्रोग्राम को अलग से
+कंपाइल करके चलाने की आदत नही होगी। रस्ट एक ऐसा भाषा है जिसके प्रोग्रामों को पहले
+से कंपाइल की ज़रोओरत है। इस्का मत्लब यह है की आप कंपाइल करके बाइनरी
+एग्सेक्यूटेबल को किसी और को दे सकते है, और यो उसे सिधा ही चला सकते है, चाहे उनके
+कंप्यूटर मे रस्ट इंस्तांल भी ना हुआ हो। इसके तुलना मे, अगर आप किसी को एक *.rb*,
+*.py*, या *.js* फ़ाइल दें, तो उनको अपने कंप्यूटर मे रूबी (Ruby), पाइथन (Python),
+या जावास्क्रिप्ट (JavaScript) पहले से ही होने की ज़रोओरत होगी। पर इन भाषाओं मे
+आप सिर्फ एक आदेश से प्रोग्राम कंपाइल करके चला सकते है। प्रोग्रामिंग भाषा बनाते
+या चुनते समय समय ऐसे कैइ जदह अदला-बदली कर्ना पङता है।
 
-Just compiling with `rustc` is fine for simple programs, but as your project
-grows, you’ll want to manage all the options and make it easy to share your
-code. Next, we’ll introduce you to the Cargo tool, which will help you write
-real-world Rust programs.
+`rustc` के साथ आप सरल रस्ट प्रोग्राम कंपाइल कर सकते है, लेकिन जैसे आप बङे
+प्रोग्राम लिखना चालु करेंगे, आपको सारे विकल्पों का संचालन करके अपने कोङ को और
+लोगों के साथ बांटने की ज़रूरत होगी। इस वजह से, हम अगले अध्यायन मे `Cargo` साधन
+पेश करेंगे जो आपको असली दुनिया के रस्ट प्रोग्राम को लिखने मे मदद करेगा।
