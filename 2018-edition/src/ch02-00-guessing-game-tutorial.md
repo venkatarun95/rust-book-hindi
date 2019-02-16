@@ -1,32 +1,54 @@
-# Programming a Guessing Game
+# अंक अनुमान खेल बनाना
 
-Let’s jump into Rust by working through a hands-on project together! This
+<!-- # Programming a Guessing Game -->
+
+चलो एक प्रोग्राम लिख कर रस्ट सीखना चालू करते हैं! यह अध्याय रस्ट के कुछ सामन्य
+गुणों का एक असली रस्ट के प्रोग्राम मे प्रयोग करके प्रदर्शन करेगा। आप सिखेंगे
+`let`, `match`, "मेथद" (method), बहरी ङिपेंङेंसी/क्रेट का प्रयोग आदि सीखेंगे!
+आगे की अध्यायों मे इनहे ज़्यादा अच्छे से सिखेंगे। इस मे सिर्क बुनियादी बातों का प्रयास करेंगे।
+
+<!-- Let’s jump into Rust by working through a hands-on project together! This
 chapter introduces you to a few common Rust concepts by showing you how to use
 them in a real program. You’ll learn about `let`, `match`, methods, associated
 functions, using external crates, and more! The following chapters will explore
-these ideas in more detail. In this chapter, you’ll practice the fundamentals.
+these ideas in more detail. In this chapter, you’ll practice the fundamentals. -->
 
-We’ll implement a classic beginner programming problem: a guessing game. Here’s
+हम एक प्रोग्राम बनायेंगे जो नौसिखिये अक्सर बनाते हैं: एक अंक अनुमान खेल। वह ऐसे
+काम करता है: प्रोग्राम १ और १०० के बीच एक अंक चुनेग। फिर वो खिलाङी को उस अंक का
+अनुमान करने को कहेगा। जब खिलाङी अनुमान दे, तो प्रोग्राम बतायेगा की अनुमान अंक से
+छोटा था कि बङा। अनुमान सही था, तो प्रोग्राम खिलाङी को बधाइ देकर बंद हो जायेगा।
+
+<!-- We’ll implement a classic beginner programming problem: a guessing game. Here’s
 how it works: the program will generate a random integer between 1 and 100. It
 will then prompt the player to enter a guess. After a guess is entered, the
 program will indicate whether the guess is too low or too high. If the guess is
-correct, the game will print a congratulatory message and exit.
+correct, the game will print a congratulatory message and exit. -->
 
-## Setting Up a New Project
+## नये प्रोग्राम का ढांचा बनाना
 
-To set up a new project, go to the *projects* directory that you created in
-Chapter 1 and make a new project using Cargo, like so:
+<!-- ## Setting Up a New Project -->
+
+नये प्रोग्राम का ढांचा बनाने के लिये, *projects* फ़ोल्ङर पर जाये जो आपने अध्याय
+१ मे बनाया था, और `Cargo` का उप्योग कर, एक नया प्रोग्राम बनायें, ऐसे:
+
+<!-- To set up a new project, go to the *projects* directory that you created in
+Chapter 1 and make a new project using Cargo, like so: -->
 
 ```text
 $ cargo new guessing_game
 $ cd guessing_game
 ```
 
-The first command, `cargo new`, takes the name of the project (`guessing_game`)
-as the first argument. The second command changes to the new project’s
-directory.
+पहला आदेश, `cargo new`, आपके प्रोग्राम का नाम (`guessing_game`) लेता है। दूसरा
+आदेश आपको अपने प्रोग्राम के नये फ़ोल्ङर पर लाता है।
 
-Look at the generated *Cargo.toml* file:
+<!-- The first command, `cargo new`, takes the name of the project (`guessing_game`)
+as the first argument. The second command changes to the new project’s
+directory. -->
+
+ऎक बार *Cargo.toml* फ़ाइल को देखते हैं, जो `Cargo` ने आप के लिये बनाया है:
+
+<!-- Look at the generated *Cargo.toml* file: -->
 
 <span class="filename">Filename: Cargo.toml</span>
 
@@ -39,11 +61,17 @@ authors = ["Your Name <you@example.com>"]
 [dependencies]
 ```
 
-If the author information that Cargo obtained from your environment is not
-correct, fix that in the file and save it again.
+अगर `Cargo` को आपके कंप्यूटर के "इन्वाइरनमेंट" (environment) से जो लेखक का नाम
+मिला, वह सही नही है, तो उसे ठीक करके फ़ाइल "सेव" (save) करें।
 
-As you saw in Chapter 1, `cargo new` generates a “Hello, world!” program for
-you. Check out the *src/main.rs* file:
+<!-- If the author information that Cargo obtained from your environment is not
+correct, fix that in the file and save it again. -->
+
+जैसे आपने अध्याय १ मे देखा था, `cargo new` आप के लिये एक नया “Hello, world!”
+प्रोग्राम बनाता है। *src/main.rs* देखें:
+
+<!-- As you saw in Chapter 1, `cargo new` generates a “Hello, world!” program for
+you. Check out the *src/main.rs* file: -->
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -53,8 +81,10 @@ fn main() {
 }
 ```
 
-Now let’s compile this “Hello, world!” program and run it in the same step
-using the `cargo run` command:
+अब `cargo run` आदेश का प्रयोग कर, इस प्रोग्राम को कंपाइल करके चलाते हैं:
+
+<!-- Now let’s compile this “Hello, world!” program and run it in the same step
+using the `cargo run` command: -->
 
 ```text
 $ cargo run
@@ -64,18 +94,30 @@ $ cargo run
 Hello, world!
 ```
 
-The `run` command comes in handy when you need to rapidly iterate on a project,
+जब किसी प्रोग्राम को लिखते समय, उसकी जांच करने के लिये, हमे बार बार उसे चलाना
+हो, जैसे हम इस अध्याय मे करेंगे, तो `run` आदेश काम आता है।
+
+<!-- The `run` command comes in handy when you need to rapidly iterate on a project,
 as we’ll do in this game, quickly testing each iteration before moving on to
-the next one.
+the next one. -->
 
-Reopen the *src/main.rs* file. You’ll be writing all the code in this file.
+*src/main.rs* फ़ाइल को फिर से खोलें। आप सारा कोङ इस फ़ाइल मे लिखेंगे।
 
-## Processing a Guess
+<!-- Reopen the *src/main.rs* file. You’ll be writing all the code in this file. -->
 
-The first part of the guessing game program will ask for user input, process
+## अनुमान लेना
+
+<!-- ## Processing a Guess -->
+
+इस प्रोग्राम का पहला भाग है, खिलाङी से अनुमान का "इनपुट" (input) लेन, उसे
+समझ्ना, और देखना की उसका रूप जैसा हमे चाहिये, वैसा है। शुरू करने के लिये, हम
+खिलाङी को अपना अनुमान इनपुत करने देंगे। निम्नलिखित Listing २-१ मे दिया कोङ
+*src/main.rs* मे लिखें।
+
+<!-- The first part of the guessing game program will ask for user input, process
 that input, and check that the input is in the expected form. To start, we’ll
 allow the player to input a guess. Enter the code in Listing 2-1 into
-*src/main.rs*.
+*src/main.rs*. -->
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -99,35 +141,54 @@ fn main() {
 <span class="caption">Listing 2-1: Code that gets a guess from the user and
 prints it</span>
 
-This code contains a lot of information, so let’s go over it line by line. To
+इस कोङ मे बहुत जानकारी है, तो हर वक्य को एक-एक करके देखते हैं। इनपुट लेकर उसको
+स्करीन पर छापने (आउटपुट) के लिये हमे `io` "इनपुट/आउटपुट" (input/output)
+"लाइब्रेरी" (library) का प्रयोग करना होगा। `io` लाइब्रेरी "स्टेंङर्ङ" (standard)
+लाइब्रेरी (जिसे `std` कहते हैं) के साथ आता है:
+
+<!-- This code contains a lot of information, so let’s go over it line by line. To
 obtain user input and then print the result as output, we need to bring the
 `io` (input/output) library into scope. The `io` library comes from the
-standard library (which is known as `std`):
+standard library (which is known as `std`): -->
 
 ```rust,ignore
 use std::io;
 ```
 
-By default, Rust brings only a few types into the scope of every program in
-[the *prelude*][prelude]<!-- ignore -->. If a type you want to use isn’t in the
+वैसे तो रस्ट सिर्फ़ कुछ ही "टाइप" (type) प्रोग्राम के "स्कोप" (scope) मे लाता
+है, वह जो [*"प्रेलूङ" (prelude)*][prelude]<!-- ignore --> मे हों। अगर आप कोइ ऐसा
+टाइप इस्तेमाल करना चाहते हैं, तो आपको अलग से एक `use` वाक्य के साथ उसे लाना होग।
+`std::io` लाइब्रेरी आपको कइ सुविधायें देता है, जैसे की ग्राहक के इन्पुट को लेने
+की सुविधा।
+
+<!-- By default, Rust brings only a few types into the scope of every program in
+[the *prelude*][prelude]<!-- ignore - ->. If a type you want to use isn’t in the
 prelude, you have to bring that type into scope explicitly with a `use`
 statement. Using the `std::io` library provides you with a number of useful
-features, including the ability to accept user input.
+features, including the ability to accept user input. -->
 
 [prelude]: ../../std/prelude/index.html
 
-As you saw in Chapter 1, the `main` function is the entry point into the
-program:
+जैसे आपने अध्याय १ मे देखा था, प्रोग्राम `main` फ़ंक्शन से शुरू होता है:
+
+<!-- As you saw in Chapter 1, the `main` function is the entry point into the
+program: -->
 
 ```rust,ignore
 fn main() {
 ```
 
-The `fn` syntax declares a new function, the parentheses, `()`, indicate there
-are no parameters, and the curly bracket, `{`, starts the body of the function.
+`fn` शब्द एक नया फ़ंक्शन बनाता है, और `()` संकेत करते हैं की यह फ़ंक्शन कोइ
+इनपुट/"पैरैमीटर" (parameter) नही लेता, और `{` फ़ंक्शन के आरंभ का संकेत करता है।
 
-As you also learned in Chapter 1, `println!` is a macro that prints a string to
-the screen:
+<!-- The `fn` syntax declares a new function, the parentheses, `()`, indicate there
+are no parameters, and the curly bracket, `{`, starts the body of the function. -->
+
+जैसे आपने अध्याय १ मे सीखा था, `println` एक "मैक्रो" (macro) है जो स्करीन मे एक
+"स्ट्रींग" (string) छापता है:
+
+<!-- As you also learned in Chapter 1, `println!` is a macro that prints a string to
+the screen: -->
 
 ```rust,ignore
 println!("Guess the number!");
@@ -135,60 +196,102 @@ println!("Guess the number!");
 println!("Please input your guess.");
 ```
 
-This code is printing a prompt stating what the game is and requesting input
-from the user.
+यह कोङ स्करीन मे एक संदेश छापता है जो खेल का नाम बताता है, और ग्राहक से इंपुट
+(ग्राहक का अनुमान) मांगता है।
 
-### Storing Values with Variables
+<!-- This code is printing a prompt stating what the game is and requesting input
+from the user. -->
 
-Next, we’ll create a place to store the user input, like this:
+### जानकारी को चर मे बचाए रखना
+
+<!-- ### Storing Values with Variables -->
+
+अब हम जगह बनाएंगे जहां हम ग्रहक के गिये गए इंपुट को बचाए रख सकते है:
+
+<!-- Next, we’ll create a place to store the user input, like this: -->
 
 ```rust,ignore
 let mut guess = String::new();
 ```
 
-Now the program is getting interesting! There’s a lot going on in this little
+अब प्रोग्राम दिलचस्प होने लगा है! इस छोटे से वाक्य मे बहुत कुछ हो रहा है। ध्यान
+दें की यह एक `let` वाक्य है, जिसे *चर* बनाने मे प्रयोग किया जाता है। एक और
+उदाहरण देखें:
+
+<!-- Now the program is getting interesting! There’s a lot going on in this little
 line. Notice that this is a `let` statement, which is used to create a
-*variable*. Here’s another example:
+*variable*. Here’s another example: -->
 
 ```rust,ignore
 let foo = bar;
 ```
 
-This line creates a new variable named `foo` and binds it to the value of the
+यह वाक्य `foo` नामक एक वाक्य बनाता है, और उसे `bar` चर का अंतर्वस्तू/"वैल्यू"
+(value) दे देता है। रस्ट मे, अगर अलग से ना कहा हो, तो चर
+अपरिवर्तनीय/"इम्म्यूटेबल" (immutable) होते है। मतलब, उनका अंतर्वस्तू बदल नही
+सकते। इस विशय को हम अध्याय ३ मे विस्तार से देखेंगे। निम्नलिखित उदहरण दिखाता है
+की `mut` शब्द से कैसे एक परिवर्तनीय/"म्यूटेबल" (mutable) चर बना सकते हैं:
+
+<!-- This line creates a new variable named `foo` and binds it to the value of the
 `bar` variable. In Rust, variables are immutable by default. We’ll be
 discussing this concept in detail in the “Variables and Mutability” section in
 Chapter 3. The following example shows how to use `mut` before the variable
-name to make a variable mutable:
+name to make a variable mutable: -->
 
 ```rust,ignore
-let foo = 5; // immutable
-let mut bar = 5; // mutable
+let foo = 5; // अपरिवर्तनीय/immutable
+let mut bar = 5; // परिवर्तनीय/mutable
 ```
 
-> Note: The `//` syntax starts a comment that continues until the end of the
-> line. Rust ignores everything in comments, which are discussed in more detail
-> in Chapter 3.
+> ध्यान दें: `//` "कम्मेंट" (comment) का संकेत देता है, जो वाक्य के अंत तक जारी
+> रहता है। रस्ट कम्मेंट मे जो भी है, उसे अंदेखा कर देता है। कम्मेंटों को हम
+> अध्याय ३ मे और गौर से देखेंगे।
 
-Now you know that `let mut guess` will introduce a mutable variable named
+<!-- > Note: The `//` syntax starts a comment that continues until the end of the
+> line. Rust ignores everything in comments, which are discussed in more detail
+> in Chapter 3. -->
+
+अब आपको पता है की `let mut guess`, `guess` नामक एक नया परिवर्तनीय चर बनायेगा।
+`=` के दूसरी तरफ़ वह अंतर्वस्तू है जो `guess` को दिया जायेगा, जो खुद
+`String::new` को बुलाने का परीणाम है. `string::new` एक ऐसा फ़ंक्शन है, जो
+`String` का एक "इंस्टेंस" (instance) वापिस देता है। [`String`][string] एक टाइप
+है, जो रस्ट के स्टैंङर्ङ लाइब्रेरी देता है। यह "UTF-८" द्वारा बनाया गया टेक्स्ट
+है, जिसकी लंबाई बढायी जा सकती है।
+
+<!-- Now you know that `let mut guess` will introduce a mutable variable named
 `guess`. On the other side of the equal sign (`=`) is the value that `guess` is
 bound to, which is the result of calling `String::new`, a function that returns
-a new instance of a `String`. [`String`][string]<!-- ignore --> is a string
+a new instance of a `String`. [`String`][string]<!-- ignore - -> is a string
 type provided by the standard library that is a growable, UTF-8 encoded bit of
-text.
+text. -->
 
 [string]: ../../std/string/struct.String.html
 
-The `::` syntax in the `::new` line indicates that `new` is an *associated
+`::new` वक्य मे, `::` संकेत करता है की `new`, `String` टाइप से *जुङा हुआ
+फ़ंक्शन* है। जुङे हुए फ़ंक्शन, टाइपों मे औजारित होते हैं, जैसे यहां `String` मे
+औजारित हैं, और उस्के किसी इंस्तेंस पर नही। कइ प्रोग्रामिंग भाशाओं मे इसे
+*स्टेटिक मेथङ (static method)* कहते हैं।
+
+<!-- The `::` syntax in the `::new` line indicates that `new` is an *associated
 function* of the `String` type. An associated function is implemented on a type,
 in this case `String`, rather than on a particular instance of a `String`. Some
-languages call this a *static method*.
+languages call this a *static method*. -->
 
-This `new` function creates a new, empty string. You’ll find a `new` function
+`new` फ़ंक्शन एक नया खाली स्ट्रिन्ग बनाता है। आपको `new` फ़ंक्शन कइ टाइपों मे
+मिलेगा, क्योंकी इस नाम को आम तौर पर ऐसें फ़ंक्शनों के लिये इस्तेमाल किया जाता
+है, जो किसी टाइप का कोइ नया इंस्टेंस बनाये।
+
+<!-- This `new` function creates a new, empty string. You’ll find a `new` function
 on many types, because it’s a common name for a function that makes a new value
-of some kind.
+of some kind. -->
 
-To summarize, the `let mut guess = String::new();` line has created a mutable
-variable that is currently bound to a new, empty instance of a `String`. Whew!
+संक्षेप मे, `let mut guess = String::new() ` वक्य ने एक नया परिवर्तनशील चर अनाया
+है, जो एक `String` के खाली इंस्टेंस से जुङा हो।
+
+<!-- To summarize, the `let mut guess = String::new();` line has created a mutable
+variable that is currently bound to a new, empty instance of a `String`. Whew! -->
+
+याद करें, की 
 
 Recall that we included the input/output functionality from the standard
 library with `use std::io;` on the first line of the program. Now we’ll call an
