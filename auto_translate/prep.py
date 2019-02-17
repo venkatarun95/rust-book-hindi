@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import markdown
 
+import pickle
 import re
 import sys
 
@@ -101,7 +102,7 @@ def replacement_word(word):
     return '_%s_' % (word.replace(' ', '_').upper())
 
 def replace_words(text, glossary):
-    # The most horrible, inefficient way to do this
+    # The most horrible, inefficient way to do this. But computers are fast!
 
     for en_word in glossary:
         new_out = ""
@@ -115,19 +116,56 @@ def replace_words(text, glossary):
         text = new_out
 
     # Replace all single newlines with a space
-
     text = re.sub(r'([^\n])\n([^\n])', r'\1 \2', text)
+
     return text
 
+def decode(text, glossary, md):
+    re_special = re.compile('\W(_[A-Z0-9_]+_[0-9]*)\W')
+    out = ""
+    prev_start = 0
+    for match in re_special.finditer(text):
+        #print(match, match.groups())
+        word = match.groups()[0]
 
-# First parse markdown
-in_file = open(sys.argv[1], 'r')
-#encode_html(markdown.markdown(in_file.read()))
-simple_text, md, holder_id = strip_markdown(in_file.read())
-#print(simple_text, md)
+        # Append the string so far
+        out += text[prev_start:match.span()[0] + 1]
+        prev_start = match.span()[1] - 1
 
-glossary = read_glossary()
+        if word.startswith('_HOLDER_'):
+            holder_id = int(word.split('_')[-1])
+            if holder_id in md:
+                cmd = md[holder_id][0]
+                if cmd != 'Head':
+                    out += md[holder_id][1]
+                else:
+                    out += word
+        else:
+            unproc_word = word.lower().replace('_', ' ').strip()
+            if unproc_word in glossary:
+                out += glossary[unproc_word]
+            elif unproc_word[-1] == 's' and unproc_word[:-1] in glossary:
+                out += glossary[unproc_word[:-1]]
+            else:
+                # We don't know what this is. So let it be
+                out += word
+    return out
 
-final = replace_words(simple_text, glossary)
-print(final)
-#print(unmd_text, md, holder_id)
+if sys.argv[1] == 'enc':
+    in_file = open(sys.argv[2], 'r')
+
+    simple_text, md, holder_id = strip_markdown(in_file.read())
+    pickle.dump(md, open('metadata.pkl', 'wb'))
+
+    glossary = read_glossary()
+
+    final = replace_words(simple_text, glossary)
+    print(final)
+elif sys.argv[1] == 'dec':
+    in_file = open(sys.argv[2], 'r')
+    md = pickle.load(open('metadata.pkl', 'rb'))
+
+    glossary = read_glossary()
+
+    decoded = decode(in_file.read(), glossary, md)
+    print(decoded)

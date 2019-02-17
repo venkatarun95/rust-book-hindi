@@ -1,18 +1,12 @@
-## Variables and Mutability
+# चर और परिवर्तनशीलता
 
-As mentioned in Chapter 2, by default variables are immutable. This is one of
-many nudges Rust gives you to write your code in a way that takes advantage of
-the safety and easy concurrency that Rust offers. However, you still have the
-option to make your variables mutable. Let’s explore how and why Rust
-encourages you to favor immutability and why sometimes you might want to opt
-out.
+<!-- This substitution trick loses tense information. E.g. the translator does not know whether _ERROR_/_ERRORS_ is singular or plural -->
 
-When a variable is immutable, once a value is bound to a name, you can’t change
-that value. To illustrate this, let’s generate a new project called *variables*
-in your *projects* directory by using `cargo new variables`.
+जैसा कि अध्याय 2 में बताया गया है, डिफ़ॉल्ट रूप से चर अपरिवर्तनशील हैं। यह कई संकेतों में से एक है रस्ट जो आपको अपना कोङ इस तरह से लिखने के लिए देता है, जो रस्ट के सुरक्षा और आसान सहवर्तीता के सुविधाओं का उपयोग कर सके। हालाँकि, आपके पास अभी भी अपना चर परिवर्तनशील बनाने का विकल्प है। आइए देखें कि कैसे और क्यों रस्ट आपको अपरिवर्तनशीलता के पक्ष में प्रोत्साहित करता है और क्यों कभी-कभी आप यह ना करना चाहेंगे।
 
-Then, in your new *variables* directory, open *src/main.rs* and replace its
-code with the following code that won’t compile just yet:
+जब एक चर अपरिवर्तनशील होता है, तो एक बार जानकारी एक नाम से बंध जाए, तो आप उस जानकारी को नहीं बदल सकते। इसे समझने के लिए, अपनी *projects* फ़ोल्ङर में `cargo new variables` का उपयोग करके *variables* नामक एक नई प्रोग्राम उत्पन्न करें।
+
+फिर, अपने नए *variables* फ़ोल्ङर में, *src/main.rs* खोलें और मौजूदा कोङ को निम्नलिखित कोङ से बदलें। यह अभी कंपाइल नहीं होगा:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -25,8 +19,7 @@ fn main() {
 }
 ```
 
-Save and run the program using `cargo run`. You should receive an error
-message, as shown in this output:
+सेव करें और `cargo run` का उपयोग करके प्रोग्राम चलाएं। आपको एरर संदेश प्राप्त होना चाहिए, जैसा कि इस आउटपुट में दिखाया गया है:
 
 ```text
 error[E0384]: cannot assign twice to immutable variable `x`
@@ -39,35 +32,18 @@ error[E0384]: cannot assign twice to immutable variable `x`
   |     ^^^^^ cannot assign twice to immutable variable
 ```
 
-This example shows how the compiler helps you find errors in your programs.
-Even though compiler errors can be frustrating, they only mean your program
-isn’t safely doing what you want it to do yet; they do *not* mean that you’re
-not a good programmer! Experienced Rustaceans still get compiler errors.
+यह उदाहरण दिखाता है कि कैसे कंपाइलर आपके प्रोग्राम में एरर को खोजने में आपकी सहायता करता है। भले ही कंपाइलर एरर निराशाजनक हो सकता है, उनका मतलब केवल यह है कि आपका प्रोग्राम अभी सुरक्षित रूप से वह नहीं कर रहा है जो आप करवाना चाहते हैं; इसका मतल यह *नही* है, कि आप एक अच्छे प्रोग्रामर नही हैं! अनुभवी रस्ट के उपयोगिता को अभी भी कंपाइलर एरर मिलते है।
 
-The error indicates that the cause of the error is that you `cannot assign twice
-to immutable variable x`, because you tried to assign a second value to the
-immutable `x` variable.
+एरर संकेत करता है कि एरर का कारण है कि आप `cannot assign twice
+to immutable variable x`, क्योंकि आपने अपरिवर्तनशील `x` चर को दूसरा जानकारी असाइन करने का प्रयास किया है।
 
-It’s important that we get compile-time errors when we attempt to change a
-value that we previously designated as immutable because this very situation
-can lead to bugs. If one part of our code operates on the assumption that a
-value will never change and another part of our code changes that value, it’s
-possible that the first part of the code won’t do what it was designed to do.
-The cause of this kind of bug can be difficult to track down after the fact,
-especially when the second piece of code changes the value only *sometimes*.
+यह महत्वपूर्ण है कि हम कंपाइल-क्षण एरेर प्राप्त करें, जब हम एक जानकारी को बदलने का प्रयास करते हैं, जिसे हमने पहले अपरिवर्तनशील के रूप में निर्दिष्ट किया था, क्योंकि यह बहुत समय बग को जन्म दे सकता है। अगर हमारा कोङ का एक हिस्सा इस धारणा पर चल रहा है कि एक जानकारी कभी नहीं बदलेगा और हमारे कोङ का एक और हिस्सा उस जानकारी को बदल देगा, तो संभव है कि कोङ का पहला भाग वह ना करे जो उसे करना चाहिये। इस तरह के बग के कारण को बाद मे खोजना करना मुश्किल हो सकता है, खासकर जब कोङ का दूसरा टुकड़ा जानकारी को केवल *कभी-कभी* बदलता है।
 
-In Rust, the compiler guarantees that when you state that a value won’t change,
-it really won’t change. That means that when you’re reading and writing code,
-you don’t have to keep track of how and where a value might change. Your code
-is thus easier to reason through.
+रस्ट में, कंपाइलर इस बात की गारंटी देता है कि जब आप बताते हैं कि जानकारी को परिवर्तित नहीं होना चाहिये, तो यह वास्तव में परिवर्तित नहीं होगा। इसका मतलब यह है कि जब आप कोङ पढ़ और लिख रहे होते हैं, तो आपको इस बात का ध्यान नहीं रखना होगा कि कैसे और कहां जानकारी बदल सकते हैं। इस प्रकार आपके कोङ का तर्क करना आसान है।
 
-But mutability can be very useful. Variables are immutable only by default; as
-you did in Chapter 2, you can make them mutable by adding `mut` in front of the
-variable name. In addition to allowing this value to change, `mut` conveys
-intent to future readers of the code by indicating that other parts of the code
-will be changing this variable value.
+लेकिन परिवर्तनशीलता बहुत उपयोगी हो सकता है। चर केवल डिफ़ॉल्ट रूप से अपरिवर्तनशील हैं; जैसा कि आपने अध्याय 2 में किया था, आप चर के सामने `mut` जोड़कर उन्हें परिवर्तनशील बना सकते हैं। इस जानकारी को बदलने की अनुमति देने के अलावा, `mut` कोङ के भविष्य के पाठकों को यह संकेत देता है कि कोङ के अन्य हिस्से इस चर के जानकारी को बदल देंगे।
 
-For example, let’s change *src/main.rs* to the following:
+उदाहरण के लिए, *src/main.rs* को निम्नलिखित कोङ से बदलें:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -80,7 +56,7 @@ fn main() {
 }
 ```
 
-When we run the program now, we get this:
+जब हम प्रोग्राम चलाते हैं, तो हमें यह मिलता है:
 
 ```text
 $ cargo run
@@ -91,69 +67,36 @@ The value of x is: 5
 The value of x is: 6
 ```
 
-We’re allowed to change the value that `x` binds to from `5` to `6` when `mut`
-is used. In some cases, you’ll want to make a variable mutable because it makes
-the code more convenient to write than if it had only immutable variables.
+जब हमने `mut` का उपयोग किया, तो हमने हमे `x` को `5` से `6` तक बाइंड करने की अनुमति दी है। कुछ मामलों में, आप एक चर परिवर्तनशील बनाना चाहते हैं, क्योंकि यह कोङ लिखना अधिक सुविधाजनक बनाता है, की अगर इसमें केवल अपरिवर्तनशील चर का उप्योग था।
 
-There are multiple trade-offs to consider in addition to the prevention of
-bugs. For example, in cases where you’re using large data structures, mutating
-an instance in place may be faster than copying and returning newly allocated
-instances. With smaller data structures, creating new instances and writing in
-a more functional programming style may be easier to think through, so lower
-performance might be a worthwhile penalty for gaining that clarity.
+बग की रोकथाम के अलावा, विचार करने के लिए कई समझौतायें हैं। उदाहरण के लिए, ऐसे मामलों में जहां आप बड़ी डेटा संरचनाओं का उपयोग कर रहे हैं, स्थान में इंस्टेंस को बदलना, नए आवंटित इंस्टेंस की प्रतिलिपि बनाने और फ़ंक्शन से वापस करने से अधिक तेज़ हो सकता है। छोटी डेटा संरचनाओं के साथ, नया इंस्टेंस बनाने और अधिक फ़ंक्शनल प्रोग्रामिंग शैली में लिखने के माध्यम से सोचने में आसान हो सकता है, इसलिए उस स्पष्टता को प्राप्त करने के लिए कम रफ़्तार एक सार्थक जुर्माना हो सकता है।
 
-### Differences Between Variables and Constants
+### चर और स्थिरांक के बीच अंतर
 
-Being unable to change the value of a variable might have reminded you of
-another programming concept that most other languages have: *constants*. Like
-immutable variables, constants are values that are bound to a name and are not
-allowed to change, but there are a few differences between constants and
-variables.
+चर के जानकारी को बदलने में असमर्थ होने के कारण आपको एक और प्रोग्रामिंग अवधारणा याद आ सकती है, जिसमें अधिकांश अन्य भाषाओं में: *स्थिरांक* हैं। अपरिवर्तनशील चर की तरह, स्थिरांक जानकारी हैं जो एक नाम से बंधे हैं और उन्हें बदलने की अनुमति नहीं है, लेकिन स्थिरांक और अपरिवर्तनशील चर के बीच कुछ अंतर हैं।
 
-First, you aren’t allowed to use `mut` with constants. Constants aren’t just
-immutable by default—they’re always immutable.
 
-You declare constants using the `const` keyword instead of the `let` keyword,
-and the type of the value *must* be annotated. We’re about to cover types and
-type annotations in the next section, “Data Types,” so don’t worry about the
-details right now. Just know that you must always annotate the type.
+सबसे पहले, आपको स्थिरांक के साथ `mut` का उपयोग करने की अनुमति नहीं है। स्थिरांक केवल डिफ़ॉल्ट रूप से अपरिवर्तनशील नहीं होते हैं - वे हमेशा अपरिवर्तनशील होते हैं।
 
-Constants can be declared in any scope, including the global scope, which makes
-them useful for values that many parts of code need to know about.
+आप `let` कीवर्ड के बजाय `const` कीवर्ड का उपयोग करके स्थिरांक घोषित करते हैं, और जानकारी का प्रकार एनोटेट *होना ही चाहिए*। हम अगले खंड "डेटा टाइप" मे, में चर के प्रकार और एनोटेशन की चरचा करने वाले हैं, इसलिए अभी विवरण के बारे में चिंता न करें। बस जान लें कि आपको हमेशा टाइप को एनोटेट करना चाहिए।
 
-The last difference is that constants may be set only to a constant expression,
-not the result of a function call or any other value that could only be
-computed at runtime.
+ग्लोबल स्कोप सहित किसी भी दायरे में स्थिरांक घोषित किए जा सकते हैं, जो उन्हें ऐसे जानकारी के लिए उपयोगी बनाता है, जिसके बारे में कोङ के कई हिस्सों को जानना आवश्यक है।
 
-Here’s an example of a constant declaration where the constant’s name is
-`MAX_POINTS` and its value is set to 100,000. (Rust’s constant naming
-convention is to use all uppercase with underscores between words,
-and underscores can be inserted in numeric literals to improve readability):
+अंतिम अंतर यह है कि स्थिरांक केवल एक स्थिर एक्सप्रेशन के साथ सेट किया जा सकता है, न कि फ़ंक्शन कॉल या किसी अन्य जानकारी के परिणाम पर, जिसकी केवल रनटाइम पर गणना की जा सकती है।
+
+यहां एक निरंतर घोषणा का एक उदाहरण है, जहां निरंतरता का नाम `MAX_POINTS` है और इसका जानकारी 100,000 पर सेट है। (रस्ट का निरंतरों नामकरण का सम्मेलन है की शब्दों के बीच अंडरस्कोर (\_) हो, और सभी अक्षर अपरकेस मे हों, और पठनीयता में सुधार करने के लिए अंकों के बीच भी अंडरस्कोर डाला जा सकता है):
 
 ```rust
 const MAX_POINTS: u32 = 100_000;
 ```
 
-Constants are valid for the entire time a program runs, within the scope they
-were declared in, making them a useful choice for values in your application
-domain that multiple parts of the program might need to know about, such as the
-maximum number of points any player of a game is allowed to earn or the speed
-of light.
+स्थिरांक, जिस स्कोप मे घोशित किये गए हों, उसमे प्रोग्राम के पुरे जीवन के लिये मन्य है। यह उन्हें आपके एप्लिकेशन डोमेन में उन मूल्यों के लिए एक उपयोगी विकल्प बनाता है जिनके बारे में प्रोग्राम के कई हिस्सों को जानने की आवश्यकता हो सकती है, जैसे कि किसी गेम के किसी भी खिलाड़ी को अधिकतम कितने अंक मिल सकते हैं, या प्रकाश की गति की अनुमति।
 
-Naming hardcoded values used throughout your program as constants is useful in
-conveying the meaning of that value to future maintainers of the code. It also
-helps to have only one place in your code you would need to change if the
-hardcoded value needed to be updated in the future.
+हार्डकोङिङ जानकारी का नामकरण प्रोग्राम में किया जाता है क्योंकि स्थिरांक कोङ के भावी अनुरक्षकों को उस जानकारी का अर्थ बताने में उपयोगी है। यह आपके कोङ में केवल एक ही स्थान रखने में मदद करता है, यदि आपको भविष्य में उस जानकारि को बदलने की आवश्यकता हो।
 
-### Shadowing
+### चर ग्रहण
 
-As you saw in the “Comparing the Guess to the Secret Number” section in Chapter
-2, you can declare a new variable with the same name as a previous variable,
-and the new variable shadows the previous variable. Rustaceans say that the
-first variable is *shadowed* by the second, which means that the second
-variable’s value is what appears when the variable is used. We can shadow a
-variable by using the same variable’s name and repeating the use of the `let`
-keyword as follows:
+जैसा कि आपने अध्याय 2 में "गुप्त संख्या की तुलना करें" अनुभाग में देखा, आप एक नए चर को पिछले चर के समान नाम से घोशित कर सकते हैं, जिस्से नया चर पुराने चर हो ग्रहण कर देता है। रस्ट के उपयोगिता का कहना है कि पहला चर दूसरे द्वारा *ग्रहण* है, जिसका अर्थ है कि है जब चर का उपयोग किया जाए, तो दूसरा चर का जानकारी उपयोग होगा। हम उसी चर के नाम का उपयोग करके और इस तरह से `let` कीवर्ड के उपयोग को दोहराकर एक चर को ग्रहणित कर सकते हैं:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -169,11 +112,7 @@ fn main() {
 }
 ```
 
-This program first binds `x` to a value of `5`. Then it shadows `x` by
-repeating `let x =`, taking the original value and adding `1` so the value of
-`x` is then `6`. The third `let` statement also shadows `x`, multiplying the
-previous value by `2` to give `x` a final value of `12`. When we run this
-program, it will output the following:
+यह प्रोग्राम पहले `x` को `5` के जानकारी से बाँधता है। फिर यह `x` को `let x =` दोहराकर, मूल जानकारी को `1` से जोड़ देता है, इसलिए `x` का जानकारि तब `6` है। तीसरा `let` भी `x` को ग्रहण देता है, और पिछले जानकारी को `2` से गुणा करके `x` को `12` का अंतिम जानकारी देता है। जब हम यह प्रोग्राम चलाते हैं, तो निम्नलिखित आउटपुट मिलेगा:
 
 ```text
 $ cargo run
@@ -183,36 +122,23 @@ $ cargo run
 The value of x is: 12
 ```
 
-Shadowing is different than marking a variable as `mut`, because we’ll get a
-compile-time error if we accidentally try to reassign to this variable without
-using the `let` keyword. By using `let`, we can perform a few transformations
-on a value but have the variable be immutable after those transformations have
-been completed.
+शैडोइंग एक चर को `mut` के रूप में चिह्नित करने से अलग है, क्योंकि हमें कंपाइल-क्षण एरर मिलेगा, यदि हम गलती से `let` कीवर्ड का उपयोग किए बिना इस चर को पुन: असाइन करने का प्रयास करते हैं। `let` का उपयोग करके, हम एक जानकारी पर कुछ परिवर्तन कर सकते हैं, लेकिन उन परिवर्तनों के पूरा होने के बाद चर को अपरिवर्तनशील कर सकते हैं।
 
-The other difference between `mut` and shadowing is that because we’re
-effectively creating a new variable when we use the `let` keyword again, we can
-change the type of the value but reuse the same name. For example, say our
-program asks a user to show how many spaces they want between some text by
-inputting space characters, but we really want to store that input as a number:
+`mut` और ग्रहण के बीच दूसरा अंतर यह है कि, क्योंकि हम प्रभावी रूप से एक नया चर बना रहे हैं जब हम फिर से `let` कीवर्ड का उपयोग करते हैं, तो हम जानकारी के टाइप को बदल सकते हैं, और वही नाम का उपयोग कर सकते हैं। उदाहरण के लिए, मान लें कि हमारा प्रोग्राम किसी उपयोगकर्ता को यह बताने के लिए कहता है कि वे 'स्पेस' (space) अक्षर का इनपुट करके शबदों के बीच कितने रिक्त स्थान चाहते हैं, लेकिन हम वास्तव में उस इनपुट को संख्या के रूप में रखना करना चाहते हैं:
 
 ```rust
 let spaces = "   ";
 let spaces = spaces.len();
 ```
 
-This construct is allowed because the first `spaces` variable is a string type
-and the second `spaces` variable, which is a brand-new variable that happens to
-have the same name as the first one, is a number type. Shadowing thus spares us
-from having to come up with different names, such as `spaces_str` and
-`spaces_num`; instead, we can reuse the simpler `spaces` name. However, if we
-try to use `mut` for this, as shown here, we’ll get a compile-time error:
+इस निर्माण की अनुमति है क्योंकि पहला `spaces` चर एक स्ट्रिंग टाइप का है और दूसरा `spaces` चर, जो कि एक नया चर है, और वही नाम का उपयोग करता है, एक संख्या टाइप का चर है। इस प्रकार ग्रहण हमें अलग-अलग नामों के खोजने से मुक्त करता है, जैसे कि `spaces_str` और `spaces_num`; इसके बजाय, हम सरल `spaces` नाम का पुन: उपयोग कर सकते हैं। हालाँकि, यदि हम इसके लिए `mut` का उपयोग करने का प्रयास करते हैं, जैसा कि यहाँ दिखाया गया है, तो हमें कंपाइल-क्षण एरर मिलेगा:
 
 ```rust,ignore
 let mut spaces = "   ";
 spaces = spaces.len();
 ```
 
-The error says we’re not allowed to mutate a variable’s type:
+एरर का कहना है कि हमें एक चर का प्रकार बदलने की अनुमति नहीं है:
 
 ```text
 error[E0308]: mismatched types
@@ -225,5 +151,6 @@ error[E0308]: mismatched types
              found type `usize`
 ```
 
-Now that we’ve explored how variables work, let’s look at more data types they
-can have.
+
+
+अब जब हमने पता लगाया है कि चर कैसे काम करते है, चलो देखते हैं कि उनके और क्या क्या टाइप हो सकते हैं।

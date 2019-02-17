@@ -11,6 +11,7 @@ directory, फ़ोल्ङर, noun,
 code, कोङ, noun,
 compile, कंपाइल, noun,
 compile, कंपाइल, verb,
+compile-time, कंपाइल-क्षण,,
 compiler, कंपाइलर, noun,
 save, सेव, verb,
 program, प्रोग्राम, verb,
@@ -25,3 +26,19 @@ bug, बग, noun,
 implement, औजारित, noun,
 instance, इंस्टेंस, noun,
 string, स्ट्रिंग, noun,
+project, प्रोग्राम, noun,
+functional, फ़ंक्शनल, adjective,
+type, टाइप, noun,
+expression, एक्सप्रेशन, noun,
+# Terms that are already handled well natively
+#datastructure, डेटा संरचना, noun,
+#data structure, डेटा संरचना, noun,
+#constant, स्थिरांक, noun
+#keyword, कीवर्ड, noun
+#annotation, एनोटेशन, adjective
+#annotate, एनोटेट, अद्जेच्तिवे
+#global, ग्लोबल, adjective,
+#scope, स्कोप, noun,
+#runtime, रनटाइम, noun,
+# Domain-specific terminology to use. But the word is common enough that automatic translation cannot handle it
+#shadow, ग्रहण, noun,
