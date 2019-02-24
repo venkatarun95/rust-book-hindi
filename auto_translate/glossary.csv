@@ -30,6 +30,17 @@ project, प्रोग्राम, noun,
 functional, फ़ंक्शनल, adjective,
 type, टाइप, noun,
 expression, एक्सप्रेशन, noun,
+# Need better word. All signed integers aren't नेगतिवे
+# integer, पूर्णांक, noun,
+signed, ऋणात्मक, noun,
+unsigned, सकारात्मक, noun
+literal, लिटरल, noun,
+hex, हेक्स, noun,
+octal, आंक्टल, noun,
+panic, आतंक, noun,
+standard, स्टैंङर्ङ, noun,
+comment, कम्मेंट, noun,
+statement, वाक्य, noun,
 # Terms that are already handled well natively
 #datastructure, डेटा संरचना, noun,
 #data structure, डेटा संरचना, noun,

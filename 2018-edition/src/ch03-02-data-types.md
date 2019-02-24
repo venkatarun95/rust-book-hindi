@@ -1,23 +1,15 @@
-## Data Types
+## जानकारी के प्रकार
 
-Every value in Rust is of a certain *data type*, which tells Rust what kind of
-data is being specified so it knows how to work with that data. We’ll look at
-two data type subsets: scalar and compound.
+रस्ट में प्रत्येक जानकारी एक निश्चित *डेटा टाइप* का है, जो रस्ट को बताता है कि उस डेटा/चर के साथ कैसे काम किया जाए। हम दो डेटा टाइप के प्रकार: स्केलर और कंपाउंड को देखेंगे।
 
-Keep in mind that Rust is a *statically typed* language, which means that it
-must know the types of all variables at compile time. The compiler can usually
-infer what type we want to use based on the value and how we use it. In cases
-when many types are possible, such as when we converted a `String` to a numeric
-type using `parse` in the “Comparing the Guess to the Secret Number” section in
-Chapter 2, we must add a type annotation, like this:
+ध्यान रखें कि रस्ट कंपाइलर को कंपाइल करते समय, सभी चर का टाइप पता होना चाहिए। कंपाइलर आमतौर पर पता लगा सकता है कि हम कौन्सा टाइप प्रयोग करना चाहते है, यह देखहर कि हम चर का उपयोग कैसे कर रहे हैं। ऐसे मामलों में जब कई टाइप संभव हैं, जैसे जब हमने अध्याय 2 में "गुप्त संख्या की तुलना करें" अनुभाग मे, `parse` का उपयोग करके, एक `String` को एक संख्यात्मक टाइप में परिवर्तित किया, तो हमें  "टाइप एनोटेशन" करके, कंपाइलर को स्पष्ट रूप से टाइप बताना पङा, जैसे:
 
 ```rust
 let guess: u32 = "42".parse().expect("Not a number!");
 ```
 
-If we don’t add the type annotation here, Rust will display the following
-error, which means the compiler needs more information from us to know which
-type we want to use:
+
+यदि हम टाइप एनोटेशन यहां नहीं जोड़ते हैं, तो रस्ट निम्नलिखित एरर प्रदर्शित करेगा, जिसका अर्थ है कि कंपाइलर को हमें और अधिक जानकारी देने की आवश्यकता है, जो टाइप हम उपयोग करना चाहते हैं।
 
 ```text
 error[E0282]: type annotations needed
@@ -30,99 +22,63 @@ error[E0282]: type annotations needed
   |         consider giving `guess` a type
 ```
 
-You’ll see different type annotations for other data types.
 
-### Scalar Types
 
-A *scalar* type represents a single value. Rust has four primary scalar types:
-integers, floating-point numbers, Booleans, and characters. You may recognize
-these from other programming languages. Let’s jump into how they work in Rust.
+आप अन्य डेटा टाइप के लिए अलग टाइप एनोटेशन देखेंगे।
 
-#### Integer Types
 
-An *integer* is a number without a fractional component. We used one integer
-type in Chapter 2, the `u32` type. This type declaration indicates that the
-value it’s associated with should be an unsigned integer (signed integer types
-start with `i`, instead of `u`) that takes up 32 bits of space. Table 3-1 shows
-the built-in integer types in Rust. Each variant in the Signed and Unsigned
-columns (for example, `i16`) can be used to declare the type of an integer
-value.
+### स्केलर टाइप
+
+*स्केलर* टाइप एक अकेले जानकारी का प्रतिनिधित्व करता है। रस्ट में चार प्राथमिक स्केलर टाइप हैं: पूर्णांक अंक, फ्लोटिंग-पॉइंट संख्या, बूलियन और वर्ण। आप अन्य प्रोग्रामिंग भाषाओं से इन्हें पहचान सकते हैं। आइए जानें कि वे रस्ट में कैसे काम करते हैं।
+
+#### पूर्णांक टाइप
+
+एक *पूर्णांक* एक अंश के बिना एक संख्या है। हमने अध्याय 2 में एक पूर्णांक टाइप का उपयोग किया, `u32` टाइप। यह टाइप घोषणा दर्शाता है कि जो जानकारी इसके साथ जुड़ा हुआ है, वह एक सकारात्मक पूर्णांक संख्या होना चाहिए (ऋणात्मक पूर्णांक टाइप `u` के बजाय `i` से शुरू होता है) जिसमें 32 बिट्स की जगह है। तालिका 3-1, रस्ट के अंतर्निहित पूर्णांक टाइप दिखाता है। सकारात्मक और ऋणात्मक पुर्णांक किए गए कॉलम में प्रत्येक टाइप (उदाहरण के लिए, `i16`) का उपयोग पूर्णांक जानकारी के टाइप को घोषित करने के लिए किया जा सकता है।
 
 <span class="caption">Table 3-1: Integer Types in Rust</span>
 
-| Length  | Signed  | Unsigned |
-|---------|---------|----------|
-| 8-bit   | `i8`    | `u8`     |
-| 16-bit  | `i16`   | `u16`    |
-| 32-bit  | `i32`   | `u32`    |
-| 64-bit  | `i64`   | `u64`    |
-| 128-bit | `i128`  | `u128`   |
-| arch    | `isize` | `usize`  |
+| आकार   | सकारात्मक |  ऋणात्मक  |
+|--------|---------|----------|
+| 8-बिट   | `i8`    | `u8`     |
+| 16-बिट  | `i16`   | `u16`    |
+| 32-बिट  | `i32`   | `u32`    |
+| 64-बिट  | `i64`   | `u64`    |
+| 128-बिट | `i128`  | `u128`   |
+| चंप्यूटर पर निरभर    | `isize` | `usize`  |
 
-Each variant can be either signed or unsigned and has an explicit size.
-*Signed* and *unsigned* refer to whether it’s possible for the number to be
-negative or positive—in other words, whether the number needs to have a sign
-with it (signed) or whether it will only ever be positive and can therefore be
-represented without a sign (unsigned). It’s like writing numbers on paper: when
-the sign matters, a number is shown with a plus sign or a minus sign; however,
-when it’s safe to assume the number is positive, it’s shown with no sign.
-Signed numbers are stored using two’s complement representation (if you’re
-unsure what this is, you can search for it online; an explanation is outside
-the scope of this book).
+<!-- Translation is terrible. Fix it -->
+प्रत्येक संस्करण को सकारात्मक या ऋणात्मक घोशित किया जा सकता है, और इसका एक स्पष्ट आकार होता है। *सकारात्मक* और *ऋणात्मक* का अर्थ है, कि क्या यह संख्या का ऋणात्मक या सकारात्मक होना संभव है - दूसरे शब्दों में, क्या संख्या को इसके साथ एक सकरात्मक्ता का चिंह करने की आवश्यकता है (ऋणात्मक) या क्या यह हमेशा सकारात्मक होगा और इसलिए हो सकता है बिना चिन्ह (बिना संकेत के) के वर्ण किया जा सकता है। यह कागज पर नंबर लिखने जैसे है: जब साइन (सकरात्मक्ता का चिंह) मायने रखता है, तो एक नंबर को प्लस साइन या माइनस साइन के साथ दिखाया जाता है; हालाँकि, जब यह मान लेना सुरक्षित है कि संख्या सकारात्मक है, तो यह बिना किसी संकेत के लिखा जाता है। हस्ताक्षरित संख्या की टूस कांप्लिमेंट मे संग्रहीत की जाती है (यदि आप इसके बारे मे नही जानते, तो आप इसे ऑनलाइन खोज सकते हैं, इसका स्पष्टीकरण इस पुस्तक के दायरे से बाहर है)।
 
-Each signed variant can store numbers from -(2<sup>n - 1</sup>) to 2<sup>n -
-1</sup> - 1 inclusive, where *n* is the number of bits that variant uses. So an
-`i8` can store numbers from -(2<sup>7</sup>) to 2<sup>7</sup> - 1, which equals
--128 to 127. Unsigned variants can store numbers from 0 to 2<sup>n</sup> - 1,
-so a `u8` can store numbers from 0 to 2<sup>8</sup> - 1, which equals 0 to 255.
+<!-- Too much trouble to translate -->
+<!-- प्रत्येक हस्ताक्षर किए गए संस्करण से नंबर स्टोर कर सकते हैं - (2 <sup> n - 1 </ sup>) से 2 <सुप> n - 1 </ sup> - 1 समावेशी, जहां * n * बिट्स की संख्या है जो वेरिएंट का उपयोग करता है। अतः `i8` संख्याओं को स्टोर कर सकता है - (2 <sup> 7 </ sup>) से 2 <सुप> 7 </ sup> - 1, जो कि -128 से 127 के बराबर होता है। अनसाइन्ड वेरिएंट 0 से 2 <सुप तक के नंबर स्टोर कर सकता है। > n </ sup> - 1, इसलिए एक `u8` नंबर को 0 से 2 <सुप> 8 </ sup> - 1 तक संग्रहीत कर सकता है, जो 0 से 255 के बराबर है। -->
 
-Additionally, the `isize` and `usize` types depend on the kind of computer your
-program is running on: 64 bits if you’re on a 64-bit architecture and 32 bits
-if you’re on a 32-bit architecture.
+`isize` और `usize` टाइप आपके कंप्यूटर के प्रकार पर निर्भर करता है, जिस पर आपका प्रोग्राम चल रहा है: 64 बिट्स यदि आप 64-बिट कंप्यूटर पर हैं और 32 बिट्स यदि आप 32-बिट कंप्यूटर पर हैं।
 
-You can write integer literals in any of the forms shown in Table 3-2. Note
-that all number literals except the byte literal allow a type suffix, such as
-`57u8`, and `_` as a visual separator, such as `1_000`.
+आप पूर्णांक शाब्दिक तालिका 3-2 में दिखाए गए किसी भी रूप में लिख सकते हैं। ध्यान दें कि बाइट लिटरल को छोड़कर सभी संख्या लिटरल एक टाइप प्रत्यय, जैसे `57u8`, और `_` एक दृश्य विभाजक, जैसे `1_000` की अनुमति देते हैं।
 
 <span class="caption">Table 3-2: Integer Literals in Rust</span>
 
-| Number literals  | Example       |
-|------------------|---------------|
-| Decimal          | `98_222`      |
-| Hex              | `0xff`        |
-| Octal            | `0o77`        |
-| Binary           | `0b1111_0000` |
-| Byte (`u8` only) | `b'A'`        |
+| अंक लिटरल | उदाहरण |
+| ------------------ | --------------- |
+| दशमलव | `98_222`  |
+| हेक्स | `0xff` |
+| आंक्टल | `0o77` |
+| बाइनरी | `0b1111_0000` |
+| बाइट (केवल `u8`) | `b'A'` |
 
-So how do you know which type of integer to use? If you’re unsure, Rust’s
-defaults are generally good choices, and integer types default to `i32`: this
-type is generally the fastest, even on 64-bit systems. The primary situation in
-which you’d use `isize` or `usize` is when indexing some sort of collection.
+तो आपको कैसे पता चलेगा कि पूर्णांक का कौन सा टाइप उपयोग करना है? यदि आप अनिश्चित हैं, तो रस्ट के डिफॉल्ट आमतौर पर अच्छे विकल्प होते हैं, और पूर्णांक के लिए डिफ़ॉल्ट टाइप `i32` है: यह टाइप आमतौर पर सबसे तेज़ है, 64-बिट सिस्टम पर भी। प्राथमिक स्थिति जिसमें आप `isize` या `usize` का उपयोग करते हैं, जब किसी प्रकार के संग्रह को अनुक्रमित किया जा रहा हो।
 
-##### Integer Overflow
+##### पूर्णांक अतिप्रवाह
 
-Let's say that you have a `u8`, which can hold values between zero and `255`.
-What happens if you try to change it to `256`? This is called "integer
-overflow", and Rust has some interesting rules around this behavior. When
-compiling in debug mode, Rust checks for this kind of issue and will cause
-your program to *panic*, which is the term Rust uses when a program exits
-with an error. We'll discuss panics more in Chapter 9.
+मान लें कि आपके पास एक `u8` चर है, जो शून्य और `255` के बीच जानकारी रख सकता है। यदि आप इसे `256` में बदलने का प्रयास करते हैं तो क्या होता है? इसे "पूर्णांक अतिप्रवाह" कहा जाता है, और रस्ट में इस व्यवहार के आसपास कुछ दिलचस्प नियम हैं। डीबग मोड में संकलन करते समय, रस्ट इस तरह के मुद्दे की जाँच करता है और आपके प्रोग्राम मे *आतंक* का कारण बनेगा। रस्ट आतंक/पैनिक शब्द का उपयोग करता है जब एक प्रोग्राम एक एरर के साथ बाहर निकलता है। हम इसकी अध्याय 9 में अधिक चर्चा करेंगे।
 
-In release builds, Rust does not check for overflow, and instead will
-do something called "two's complement wrapping." In short, `256` becomes
-`0`, `257` becomes `1`, etc. Relying on overflow is considered an error,
-even if this behavior happens. If you want this behavior explicitly, the
-standard library has a type, `Wrapping`, that provides it explicitly.
+रिलीज़ बिल्ड में, रस्ट अतिप्रवाह के लिए जाँच नहीं करता है, और इसके बजाय "टूस कांप्लिमेंट रैपिंग" नामक कुछ करेगा। संक्षेप में, `256` `0`,  और `257` `1` बन जाता है, और अतिप्रवाह पर निरभर करना एक एरर माना जाता है, भले ही यह व्यवहार चाहते हो। यदि आप यह व्यवहार स्पष्ट रूप से चाहते हैं, तो स्टैंङर्ङ लाइब्रेरी में एक टाइप, `Wrapping` है, जो इसे स्पष्ट रूप से प्रदान करता है।
 
-#### Floating-Point Types
+#### फ्लोटिंग-पॉइंट टाइप
 
-Rust also has two primitive types for *floating-point numbers*, which are
-numbers with decimal points. Rust’s floating-point types are `f32` and `f64`,
-which are 32 bits and 64 bits in size, respectively. The default type is `f64`
-because on modern CPUs it’s roughly the same speed as `f32` but is capable of
-more precision.
+रस्ट में *फ़्लोटिंग-पॉइंट संक्या* के लिए दो आदिम टाइप हैं, जो दशमलव अंश के साथ संख्या हैं। रस्ट का फ़्लोटिंग-पॉइंट टाइप `f32` और `f64` हैं, जो क्रमशः 32 बिट्स और 64 बिट्स के हैं। डिफ़ॉल्ट टाइप, `f64` है क्योंकि आधुनिक CPU पर यह गति मे `f32` से लगभग समान के समान है, लेकिन अधिक परिशुद्धता के सक्षम है।
 
-Here’s an example that shows floating-point numbers in action:
+यहां एक उदाहरण है जो फ्लोटिंग-पॉइंट संख्या को कार्रवाई में दिखाता है:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -134,14 +90,13 @@ fn main() {
 }
 ```
 
-Floating-point numbers are represented according to the IEEE-754 standard. The
-`f32` type is a single-precision float, and `f64` has double precision.
 
-#### Numeric Operations
 
-Rust supports the basic mathematical operations you’d expect for all of the
-number types: addition, subtraction, multiplication, division, and remainder.
-The following code shows how you’d use each one in a `let` statement:
+फ्लोटिंग-पॉइंट नंबर IEEE-754 मानक के अनुसार दर्शाए गए हैं। `f32` टाइप एक एकल-सटीक फ़्लोट है, और `f64` में दोहरी सटीकता फ़्लोट है।
+
+#### न्यूमेरिक ऑपरेशन
+
+रस्ट उन सभी मूल गणितीय क्रियाओं का समर्थन करता है जिनकी आप संख्या टाइप के लिए अपेक्षा रखते हैं: जोङ, घटाव, गुणा, भाग और शेष। निम्न कोङ दिखाता है कि आप `let` वाक्य में प्रत्येक का उपयोग कैसे करते हैं:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -164,15 +119,11 @@ fn main() {
 }
 ```
 
-Each expression in these statements uses a mathematical operator and evaluates
-to a single value, which is then bound to a variable. Appendix B contains a
-list of all operators that Rust provides.
+इन वाक्यों में प्रत्येक एक्सप्रेशन एक गणितीय ऑपरेटर का उपयोग करता है और एक जानकारी का मूल्यांकन करता है, जो फिर चर से बंधे जाते है। परिशिष्ट B में उन सभी ऑपरेटरों की सूची है जो रस्ट प्रदान करता है।
 
-#### The Boolean Type
+#### बूलियन टाइप
 
-As in most other programming languages, a Boolean type in Rust has two possible
-values: `true` and `false`. The Boolean type in Rust is specified using `bool`.
-For example:
+जैसा कि अधिकांश अन्य प्रोग्रामिंग भाषाओं में, रस्ट में एक 'बूलियन' टाइप है जिसके दो संभव मूल्य: `true` (सही) और `false` (गलत) हो सकते हैं। बूलियन टाइप रस्ट में `bool` का उपयोग करके निर्दिष्ट किया गया है। उदाहरण के लिए:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -184,18 +135,17 @@ fn main() {
 }
 ```
 
-The main way to consume Boolean values is through conditionals, such as an `if`
-expression. We’ll cover how `if` expressions work in Rust in the “Control Flow”
-section.
+<!--- Hand-Corrected till here --->
 
-Booleans are one byte in size.
+बूलियन जानकारी का उपभोग करने का मुख्य तरीका सशर्त है, जैसे कि `if` _EXPRESSION_। हम "कंट्रोल फ़्लो" अनुभाग में _ROLDER_81 _EXPRESSIONS_ रस्ट में कैसे काम करते हैं, इसे कवर करेंगे।
 
-#### The Character Type
+बूलियन आकार में एक बाइट होते हैं।
 
-So far we’ve worked only with numbers, but Rust supports letters too. Rust’s
-`char` type is the language’s most primitive alphabetic type, and the following
-code shows one way to use it. (Note that the `char` literal is specified with
-single quotes, as opposed to string literals, which use double quotes.)
+_HOLDER_12
+
+चरित्र टाइप
+
+अब तक हमने केवल संख्याओं के साथ काम किया है, लेकिन रस्ट अक्षरों का भी समर्थन करता है। रस्ट का `char` _TYPE_ भाषा का सबसे प्रमुख अक्षर है टाइप, और निम्न कोङ इसका उपयोग करने का एक तरीका दिखाता है। (ध्यान दें कि `char` शाब्दिक एकल उद्धरण के साथ निर्दिष्ट है, जैसा कि स्ट्रिंग शाब्दिक के विपरीत है, जो दोहरे उद्धरण चिह्नों का उपयोग करते हैं।)
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -207,29 +157,23 @@ fn main() {
 }
 ```
 
-Rust’s `char` type represents a Unicode Scalar Value, which means it can
-represent a lot more than just ASCII. Accented letters; Chinese, Japanese, and
-Korean characters; emoji; and zero-width spaces are all valid `char` values in
-Rust. Unicode Scalar Values range from `U+0000` to `U+D7FF` and `U+E000` to
-`U+10FFFF` inclusive. However, a “character” isn’t really a concept in Unicode,
-so your human intuition for what a “character” is may not match up with what a
-`char` is in Rust. We’ll discuss this topic in detail in “Strings” in Chapter 8.
 
-### Compound Types
 
-*Compound types* can group multiple values into one type. Rust has two
-primitive compound types: tuples and arrays.
+रस्ट का `char` _TYPE_ एक यूनिकोड स्केलर जानकारी का प्रतिनिधित्व करता है, जिसका अर्थ है कि यह सिर्फ ASCII से बहुत अधिक प्रतिनिधित्व कर सकता है। उच्चारण किए गए पत्र; चीनी, जापानी और कोरियाई वर्ण; इमोजी; और शून्य-चौड़ाई रिक्त स्थान सभी वैध `char` _VALUES_ में रस्ट हैं। यूनिकोड स्केलर जानकारी की सीमा `U+0000` से `U+D7FF` और `U+E000` से `U+10FFFF` तक सम्मिलित है। हालाँकि, यूनिकोड में एक "चरित्र" वास्तव में एक अवधारणा नहीं है, इसलिए "चरित्र" जो एक `char` _RUST_ में क्या है, के साथ मेल नहीं खा सकता है के लिए आपका मानव अंतर्ज्ञान है। हम इस विषय पर अध्याय 8 में "स्ट्रिंग" पर विस्तार से चर्चा करेंगे।
 
-#### The Tuple Type
+_HOLDER_14
 
-A tuple is a general way of grouping together some number of other values
-with a variety of types into one compound type. Tuples have a fixed length:
-once declared, they cannot grow or shrink in size.
+यौगिक टाइप
 
-We create a tuple by writing a comma-separated list of values inside
-parentheses. Each position in the tuple has a type, and the types of the
-different values in the tuple don’t have to be the same. We’ve added optional
-type annotations in this example:
+* यौगिक टाइप * एकाधिक जानकारी को एक टाइप में समूहित कर सकता है। रस्ट में दो आदिम यौगिक हैं टाइप: ट्यूपल्स और सरणियाँ।
+
+_HOLDER_15
+
+टपल टाइप
+
+एक ट्यूल एक सामान्य तरीका है जो कुछ अन्य जानकारी की संख्या को एक यौगिक टाइप में टाइप की विविधता के साथ जोड़ देता है। टुपल्स की एक निश्चित लंबाई होती है: एक बार घोषित होने के बाद, वे आकार में बढ़ या सिकुड़ नहीं सकते हैं।
+
+हम कोष्ठकों के अंदर जानकारी की अल्पविराम-अलग सूची लिखकर एक टपल बनाते हैं। टपल में प्रत्येक स्थिति में एक टाइप है, और tuple में विभिन्न जानकारी के टाइप को समान नहीं होना है। हमने इस उदाहरण में वैकल्पिक टाइप एनोटेशन जोड़े हैं:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -239,9 +183,9 @@ fn main() {
 }
 ```
 
-The variable `tup` binds to the entire tuple, because a tuple is considered a
-single compound element. To get the individual values out of a tuple, we can
-use pattern matching to destructure a tuple value, like this:
+
+
+चर _HOLDER_91 पूरे टूपल को बांधता है, क्योंकि एक ट्यूपल को एक एकल यौगिक तत्व माना जाता है। व्यक्तिगत जानकारी को एक ट्यूपल से बाहर निकालने के लिए, हम इस तरह से एक tuple जानकारी को नष्ट करने के लिए मिलान पैटर्न का उपयोग कर सकते हैं:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -255,15 +199,11 @@ fn main() {
 }
 ```
 
-This program first creates a tuple and binds it to the variable `tup`. It then
-uses a pattern with `let` to take `tup` and turn it into three separate
-variables, `x`, `y`, and `z`. This is called *destructuring*, because it breaks
-the single tuple into three parts. Finally, the program prints the value of
-`y`, which is `6.4`.
 
-In addition to destructuring through pattern matching, we can access a tuple
-element directly by using a period (`.`) followed by the index of the value we
-want to access. For example:
+
+यह प्रोग्राम पहले एक ट्यूपल बनाता है और इसे _VARIABLE__HOLDER_92 से बांधता है। यह तब `tup` के साथ `tup` को लेने और इसे तीन अलग-अलग चर, `x`, `y`, और `z` में बदलने के लिए एक पैटर्न का उपयोग करता है। इसे * विनाशकारी * कहा जाता है, क्योंकि यह एकल टपल को तीन भागों में तोड़ता है। अंत में, प्रोग्राम _HOLDER_98 के जानकारी को प्रिंट करता है, जो कि `6.4` है।
+
+पैटर्न मिलान के माध्यम से विनाशकारी के अलावा, हम एक अवधि (`.`) का उपयोग करके सीधे एक tuple तत्व का उपयोग कर सकते हैं, उसके बाद जानकारी के सूचकांक तक हम पहुंचना चाहते हैं। उदाहरण के लिए:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -279,19 +219,17 @@ fn main() {
 }
 ```
 
-This program creates a tuple, `x`, and then makes new variables for each
-element by using their index. As with most programming languages, the first
-index in a tuple is 0.
 
-#### The Array Type
 
-Another way to have a collection of multiple values is with an *array*. Unlike
-a tuple, every element of an array must have the same type. Arrays in Rust are
-different from arrays in some other languages because arrays in Rust have a
-fixed length, like tuples.
+यह प्रोग्राम एक tuple बनाता है, `x`, और फिर उनके सूचकांक का उपयोग करके प्रत्येक तत्व के लिए नया चर बनाता है। अधिकांश प्रोग्रामिंग भाषाओं के साथ, टुपल में पहला इंडेक्स 0 है।
 
-In Rust, the values going into an array are written as a comma-separated list
-inside square brackets:
+_HOLDER_19
+
+एरे टाइप
+
+एकाधिक जानकारी का संग्रह करने का एक अन्य तरीका * सरणी * के साथ है। टपल के विपरीत, सरणी के प्रत्येक तत्व में समान टाइप होना चाहिए। रस्ट में सरणियाँ कुछ अन्य भाषाओं में सरणियों से भिन्न होती हैं क्योंकि रस्ट में सरणियाँ एक निश्चित लंबाई होती हैं, जैसे ट्यूपल्स।
+
+रस्ट में, सरणी में जा रहे जानकारी को वर्ग कोष्ठक के अंदर अल्पविराम से अलग सूची के रूप में लिखा गया है:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -301,43 +239,34 @@ fn main() {
 }
 ```
 
-Arrays are useful when you want your data allocated on the stack rather than
-the heap (we will discuss the stack and the heap more in Chapter 4), or when
-you want to ensure you always have a fixed number of elements. An array isn’t
-as flexible as the vector type, though. A vector is a similar collection type
-provided by the standard library that *is* allowed to grow or shrink in size.
-If you’re unsure whether to use an array or a vector, you should probably use a
-vector. Chapter 8 discusses vectors in more detail.
 
-An example of when you might want to use an array rather than a vector is in a
-program that needs to know the names of the months of the year. It’s very
-unlikely that such a program will need to add or remove months, so you can use
-an array because you know it will always contain 12 items:
+
+Arrays तब उपयोगी होती है जब आप चाहते हैं कि ढेर के बजाय आपका डेटा स्टैक पर आबंटित हो (हम स्टैक और हीप को अध्याय 4 में अधिक चर्चा करेंगे), या जब आप यह सुनिश्चित करना चाहते हैं कि आपके पास हमेशा तत्वों की एक निश्चित संख्या हो। एक सरणी हालांकि वेक्टर टाइप के रूप में लचीली नहीं है, हालांकि। एक वेक्टर एक समान संग्रह है टाइप मानक पुस्तकालय द्वारा प्रदान किया गया है जो * आकार में बढ़ने या सिकुड़ने की अनुमति है। यदि आप किसी सरणी या वेक्टर का उपयोग करने के लिए अनिश्चित हैं, तो आपको संभवतः वेक्टर का उपयोग करना चाहिए। अध्याय 8 अधिक विस्तार से वैक्टर पर चर्चा करता है।
+
+जब आप वेक्टर के बजाय एक सरणी का उपयोग करना चाहते हैं, तो इसका एक उदाहरण प्रोग्राम में है, जिसे वर्ष के महीनों के नाम जानने की आवश्यकता है। यह बहुत कम संभावना नहीं है कि इस तरह के प्रोग्राम को महीनों को जोड़ने या निकालने की आवश्यकता होगी, इसलिए आप एक सरणी का उपयोग कर सकते हैं क्योंकि आप जानते हैं कि इसमें हमेशा 12 आइटम होंगे:
 
 ```rust
 let months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
 ```
 
-Arrays have an interesting type; it looks like this: `[type; number]`. For
-example:
+
+
+Arrays में एक दिलचस्प टाइप है; यह इस तरह दिखता है: `[type; number]`। उदाहरण के लिए:
 
 ```rust
 let a: [i32; 5] = [1, 2, 3, 4, 5];
 ```
 
-First, there's square brackets; they look like the syntax for creating an
-array. Inside, there's two pieces of information, separated by a semicolon.
-The first is the type of each element of the array. Since all elements have
-the same type, we only need to list it once. After the semicolon, there's
-a number that indicates the length of the array. Since an array has a fixed size,
-this number is always the same, even if the array's elements are modified, it
-cannot grow or shrink.
 
-##### Accessing Array Elements
 
-An array is a single chunk of memory allocated on the stack. You can access
-elements of an array using indexing, like this:
+सबसे पहले, वहाँ वर्ग कोष्ठक हैं; वे एक सरणी बनाने के लिए वाक्यविन्यास की तरह दिखते हैं। अंदर, सूचना के दो टुकड़े हैं, एक अर्धविराम द्वारा अलग किया गया है। सरणी के प्रत्येक तत्व का पहला टाइप है। चूंकि सभी तत्वों में समान टाइप है, इसलिए हमें केवल इसे एक बार सूचीबद्ध करना होगा। अर्धविराम के बाद, एक संख्या है जो सरणी की लंबाई को इंगित करती है। चूंकि किसी सरणी का एक निश्चित आकार होता है, यह संख्या हमेशा समान होती है, भले ही सरणी के तत्वों को संशोधित किया गया हो, यह बढ़ या सिकुड़ नहीं सकता है।
+
+_HOLDER_23
+
+ऐरे तत्वों तक पहुँचना
+
+एक सरणी स्टैक पर आवंटित स्मृति का एक एकल हिस्सा है। आप अनुक्रमणिका का उपयोग करके किसी सरणी के तत्वों को इस तरह एक्सेस कर सकते हैं:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -350,15 +279,15 @@ fn main() {
 }
 ```
 
-In this example, the variable named `first` will get the value `1`, because
-that is the value at index `[0]` in the array. The variable named `second` will
-get the value `2` from index `[1]` in the array.
 
-##### Invalid Array Element Access
 
-What happens if you try to access an element of an array that is past the end
-of the array? Say you change the example to the following code, which will
-compile but exit with an error when it runs:
+इस उदाहरण में, `first` नाम के चर को _VALUE__HOLDER_104 मिलेगा, क्योंकि यह सरणी में सूचकांक `[0]` पर जानकारी _HOLDER_106 नाम के चर को सरणी में सूचकांक `[1]` से जानकारी _HOLDER_107 मिलेगा।
+
+_HOLDER_25
+
+अमान्य एरे तत्व अभिगमन
+
+यदि आप किसी ऐसे सरणी के तत्व को एक्सेस करने का प्रयास करते हैं, जो सरणी के अंत में स्थित है? उदाहरण के लिए, आप निम्न कोङ के लिए उदाहरण बदलते हैं, जो कंपाइल होगा, लेकिन जब आप चलते हैं तो एक एरर से बाहर निकलें:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -373,7 +302,9 @@ fn main() {
 }
 ```
 
-Running this code using `cargo run` produces the following result:
+
+
+इस कोङ को चलाने से `cargo run` का उपयोग करके निम्नलिखित परिणाम प्राप्त होता है:
 
 ```text
 $ cargo run
@@ -385,14 +316,8 @@ thread '<main>' panicked at 'index out of bounds: the len is 5 but the index is
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 ```
 
-The compilation didn’t produce any errors, but the program resulted in a
-*runtime* error and didn’t exit successfully. When you attempt to access an
-element using indexing, Rust will check that the index you’ve specified is less
-than the array length. If the index is greater than the length, Rust will
-panic.
 
-This is the first example of Rust’s safety principles in action. In many
-low-level languages, this kind of check is not done, and when you provide an
-incorrect index, invalid memory can be accessed. Rust protects you against this
-kind of error by immediately exiting instead of allowing the memory access and
-continuing. Chapter 9 discusses more of Rust’s error handling.
+
+संकलन किसी भी एरर का उत्पादन नहीं करता है, लेकिन प्रोग्राम के परिणामस्वरूप * रनटाइम * एरर हुआ और सफलतापूर्वक बाहर नहीं निकला। जब आप अनुक्रमणिका का उपयोग करके किसी तत्व तक पहुंचने का प्रयास करते हैं, तो रस्ट यह जाँच करेगा कि आपके द्वारा निर्दिष्ट सूचकांक सरणी लंबाई से कम है। यदि सूचकांक लंबाई से अधिक है, तो रस्ट घबराएगा।
+
+यह कार्रवाई में रस्ट के सुरक्षा सिद्धांतों का पहला उदाहरण है। कई निम्न-स्तरीय भाषाओं में, इस तरह की जाँच नहीं की जाती है, और जब आप एक गलत इंडेक्स प्रदान करते हैं, तो अमान्य मेमोरी तक पहुँचा जा सकता है। रस्ट आपको मेमोरी एक्सेस और जारी रखने की अनुमति देने के बजाय तुरंत बाहर निकलने से एरर के इस प्रकार से बचाता है। अध्याय 9 में रस्ट के एरर
