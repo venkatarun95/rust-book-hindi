@@ -1,22 +1,22 @@
 # The Rust Programming Language
 
 [Foreword](foreword.md)
-[Introduction](ch00-00-introduction.md)
+[परिचय](ch00-00-introduction.md)
 
-## Getting started
+## शुरुआत
 
-- [Getting Started](ch01-00-getting-started.md)
-    - [Installation](ch01-01-installation.md)
-    - [Hello, World!](ch01-02-hello-world.md)
-    - [Hello, Cargo!](ch01-03-hello-cargo.md)
+- [शुरुआत](ch01-00-getting-started.md)
+    - [रस्ट चलाना](ch01-01-installation.md)
+    - [आपका पहला रस्ट प्रोग्राम!](ch01-02-hello-world.md)
+    - [`Cargo` का उप्योग](ch01-03-hello-cargo.md)
 
-- [Programming a Guessing Game](ch02-00-guessing-game-tutorial.md)
+- [अंक अनुमान खेल बनाना](ch02-00-guessing-game-tutorial.md)
 
-- [Common Programming Concepts](ch03-00-common-programming-concepts.md)
-    - [Variables and Mutability](ch03-01-variables-and-mutability.md)
-    - [Data Types](ch03-02-data-types.md)
-    - [How Functions Work](ch03-03-how-functions-work.md)
-    - [Comments](ch03-04-comments.md)
+- [सामन्य प्रोग्रामिंग अवधारणाएं](ch03-00-common-programming-concepts.md)
+    - [चर और परिवर्तनशीलता](ch03-01-variables-and-mutability.md)
+    - [जानकारी के प्रकार](ch03-02-data-types.md)
+    - [फ़ंक्शन](ch03-03-how-functions-work.md)
+    - [विवरण](ch03-04-comments.md)
     - [Control Flow](ch03-05-control-flow.md)
 
 - [Understanding Ownership](ch04-00-understanding-ownership.md)

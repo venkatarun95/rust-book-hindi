@@ -1,3 +1,20 @@
+# रस्ट परोगरांमिंग भा‍षा
+
+[![Build Status](https://travis-ci.org/rust-lang/book.svg?branch=master)](https://travis-ci.org/rust-lang/book)
+
+अनुवाद नोट: किसी भी तटनीकी अनुवाद मे तकनीकी शब्द प्रयोग होते हैं। इस अनुवाग मे
+कोशिश रही है कि हर जगह सुसंगत रुप से शब्दों का प्रयोग हो। इस अनुवाद मे प्रयोग
+किए गय तकनीकी शब्दों का शब्दकोष आप [glossary.csv](auto_translate/glossary.csv)
+मे देख सकते हैं। अभि सिर्फ कुछ अधयायों का अनुवाद किया है।
+
+आप [सुची](2018-edition/src/SUMMARY.md) से पढना शुरू कर सकते हैं। सारे अधयाय
+[2018-edition/src](https://github.com/venkatarun95/rust-book-hindi/blob/master/2018-edition/src/)
+फ़ोल्डर मे हैं।
+
+मेने हिंदी मे बोहोत पहले नही लिखा है, और तकनीकी विषयों पर तो बिलकुल नही। आपको
+गलतियां शरूर मिलेंगी। सुझाव हो, तो क्रपया दीजिए।
+
+
 # The Rust Programming Language
 
 [![Build Status](https://travis-ci.org/rust-lang/book.svg?branch=master)](https://travis-ci.org/rust-lang/book)
@@ -74,8 +91,8 @@ kinds of contributions we're looking for.
 
 ### 2018 Edition
 
-The "2018" Edition is in the process of being updated with the language changes 
-that will be available with the 2018 Edition of the Rust language. All new 
+The "2018" Edition is in the process of being updated with the language changes
+that will be available with the 2018 Edition of the Rust language. All new
 contributions should be to this edition.
 
 ### Second Edition
