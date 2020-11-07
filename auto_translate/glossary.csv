@@ -53,3 +53,9 @@ statement, वाक्य, noun,
 #runtime, रनटाइम, noun,
 # Domain-specific terminology to use. But the word is common enough that automatic translation cannot handle it
 #shadow, ग्रहण, noun,
+declare, डिक्लैर, verb
+definition, डेफीनीषण, noun
+binary, बाइनरी, noun
+parameter, पैरामीटर, noun
+signature, हस्ताक्षर, noun
+macro, मैक्रो, noun

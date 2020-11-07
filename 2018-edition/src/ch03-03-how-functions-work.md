@@ -1,13 +1,8 @@
-## Functions
+## फ़ंक्शन
 
-Functions are pervasive in Rust code. You’ve already seen one of the most
-important functions in the language: the `main` function, which is the entry
-point of many programs. You’ve also seen the `fn` keyword, which allows you to
-declare new functions.
+रस्ट कोड मे फंक्शन हर जगह मिलते हें। आपने सबसे महत्वपूर्ण फंक्शन मे से एक देख चुके हैं: `main` फंक्शन, जहां से कई प्रोगराम आरंभ होते है। आपने `fn` कीवर्ड भी देखा है, जो आपको नए फंक्शन डीक्लैर करने देता है।
 
-Rust code uses *snake case* as the conventional style for function and variable
-names. In snake case, all letters are lowercase and underscores separate words.
-Here’s a program that contains an example function definition:
+रस्ट मे परंपरा है कि हम *स्नेक केस (snake case)* का प्रयोग करते हैं। इसमे सारे अक्षर लोअरकेस (lowercase) होते हैं, और श्बदों को अंडरस्कोर (underscore) यानी `_` से अलग किया जाता है। निम्लिखित प्रोगराम मे एक फंक्शन डेफ़ीनीशन का डेफीनीषण (definition) (यानी परिभाषा) उदाहरण है।
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -23,20 +18,11 @@ fn another_function() {
 }
 ```
 
-Function definitions in Rust start with `fn` and have a set of parentheses
-after the function name. The curly brackets tell the compiler where the
-function body begins and ends.
+रस्ट मे फंक्शन डेफीनीषण का आरंभ `fn` से होता है, और उसके आगे `()` होते हैं। उसके आगे वाले `{}` कंपाईलर को यह बताते हैं कि फंक्शन कहां शुरू ाुर कहां खतम होता है।
 
-We can call any function we’ve defined by entering its name followed by a set
-of parentheses. Because `another_function` is defined in the program, it can be
-called from inside the `main` function. Note that we defined `another_function`
-*after* the `main` function in the source code; we could have defined it before
-as well. Rust doesn’t care where you define your functions, only that they’re
-defined somewhere.
+फंक्शन को बुलाने के लिए हम उसके नाम के आगे `()` लगाते हैं। क्योंकी `another_function` को परोगराम मे डीफाईन किया गया है, उसे `main` फंक्शन के अंदर से बुलाया जा सकता है। धयान कीजिए कि `another_function` को `main` फंक्शन के बाद लिखा है; हम पहले भी लिख सकते थे. रस्ट को इससे मतलब नही की आपने फंक्शन कहां डीफाईन किया है, बस इतना कि कहीं किया हो।
 
-Let’s start a new binary project named *functions* to explore functions
-further. Place the `another_function` example in *src/main.rs* and run it. You
-should see the following output:
+चलो *functions* नामक एक नया बाइनरी परौजेक्ट शुरू करते हैं। `another_function` वले उदाहरण को *src/main.rs* मे डालकर चलाएं। आपको यह दिखना चाहिए:
 
 ```text
 $ cargo run
@@ -47,22 +33,13 @@ Hello, world!
 Another function.
 ```
 
-The lines execute in the order in which they appear in the `main` function.
-First, the “Hello, world!” message prints, and then `another_function` is
-called and its message is printed.
+वाक्य उसी क्रम मे चलते हैं जिस क्रम मे वह `main` फंक्शन मे दिखते हैं। अर्थार्थ, पहले "Hello, world!" संदेश प्रिंट होता हाि, और फिर `another_function` को बुलाया जाता है, और उसका संदेश "Another function." प्रिंट होता है।
 
-### Function Parameters
+### फंक्शन पैरामीटर
 
-Functions can also be defined to have *parameters*, which are special variables
-that are part of a function’s signature. When a function has parameters, you
-can provide it with concrete values for those parameters. Technically, the
-concrete values are called *arguments*, but in casual conversation, people tend
-to use the words *parameter* and *argument* interchangeably for either the
-variables in a function’s definition or the concrete values passed in when you
-call a function.
+फंक्शन को *पैरामीटर (parameter)* के साथ भी डिफाइन किया जा सकता है। पैरामीटर ऐसे खास चर होते हैं जो फंक्शन के हसताक्षर के एक हिस्सा होते हैं। जब फंक्शन मे पैरामीटर होते हैं, नब आप उनमे जानकारी भर सकते हैं। तकनीकी रूप से पैरामीटर मे भरे जानकारी को *आर्जयूमेंट (argument)* कहते हैं, लेकिन साधाहरण भाषा मे लोग दोनो शब्द उप्योग करते हैं।
 
-The following rewritten version of `another_function` shows what parameters
-look like in Rust:
+निम्नलिखित कोड पैरामीटर का उदाहरण देता है:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -76,7 +53,7 @@ fn another_function(x: i32) {
 }
 ```
 
-Try running this program; you should get the following output:
+इस प्रोग्राम को चलाने पर आपको यह दिखना चाहिए:
 
 ```text
 $ cargo run
@@ -86,18 +63,11 @@ $ cargo run
 The value of x is: 5
 ```
 
-The declaration of `another_function` has one parameter named `x`. The type of
-`x` is specified as `i32`. When `5` is passed to `another_function`, the
-`println!` macro puts `5` where the pair of curly brackets were in the format
-string.
+`another_function` के डेफीनीशण मे `x` नामक एक पैरामीटर है। उसका टाईप `i32` दिया गया है। जब `another_function` को जानकारी के रूप मे `5` दिया जाता है, तो `println!` मैक्रो (macro) `{}` की जगह `5` डाल देता है।
 
-In function signatures, you *must* declare the type of each parameter. This is
-a deliberate decision in Rust’s design: requiring type annotations in function
-definitions means the compiler almost never needs you to use them elsewhere in
-the code to figure out what you mean.
+फंक्शन के हस्ताक्षर मे हर पैरामीटर का टाईप बताना ज़रूरी है। रस्ट मे यह निर्णय जानबूजकर लिया गया है। क्योंकी फंक्शन मे ही हर पैरामिटर का टाईप लखा है, कंपाईलर को टाईप जानने के लिए और कहीं देखने की ज़रूरत नही, और फंक्शन बुलाते समय आपको टाइप बताने कि जरूरत नही।
 
-When you want a function to have multiple parameters, separate the parameter
-declarations with commas, like this:
+अगर आप डाहते हैं कि फंक्शन मे अनेक पैरामीटर हों, तो उनहें "," से अलग करें। उदाहरण के लिए:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -112,14 +82,9 @@ fn another_function(x: i32, y: i32) {
 }
 ```
 
-This example creates a function with two parameters, both of which are `i32`
-types. The function then prints the values in both of its parameters. Note that
-function parameters don’t all need to be the same type, they just happen to be
-in this example.
+इस उदाहरण के फंक्शन मे दो पैरामीटर हैं, और दोनो के टाईप `i32` है। फंक्शन दोनो के जानकारी को प्रिंट कर देता है। ध्यान कीजिए कि सारे पैरामीटर का टाईप एक ही हो, ऐसा जरूरी नही है। यह सिर्फ एक उदाहरण है।
 
-Let’s try running this code. Replace the program currently in your *functions*
-project’s *src/main.rs* file with the preceding example and run it using `cargo
-run`:
+इस उदाहरण को चलाने के लिए, अपने *functions* प्रोग्राम के *src/main.rs* फाइल मे ऊपर लिखे कोड लीख दें (और पुराना कोच हटा दें), और `cargo run` का उप्योग कर चला दें:
 
 ```text
 $ cargo run
@@ -130,27 +95,17 @@ The value of x is: 5
 The value of y is: 6
 ```
 
-Because we called the function with `5` as the value for  `x` and `6` is passed
-as the value for `y`, the two strings are printed with these values.
+क्योंकी हमने फंक्शन को बुलाते वकत `x` को `5` और `y` को `6` की जानकारी दी थी, वह इन दो अंकों के साथ दो वाक्य प्रिंट करता है।
 
-### Function Bodies
+### function बांडी (यानी सरीर)
 
-Function bodies are made up of a series of statements optionally ending in an
-expression. So far, we’ve only covered functions without an ending expression,
-but you have seen an expression as part of statements. Because Rust is an
-expression-based language, this is an important distinction to understand.
-Other languages don’t have the same distinctions, so let’s look at what
-statements and expressions are and how their differences affect the bodies of
-functions.
+फंक्शन बांडी सटेटमेंट से बने होते हें। वह वैकलपिक रूप से expression से खतम हो सकते हैं। अब तक हमने सिर्फ एसे function देखे हैं जो expression से खतम नही होते, लेकिन आपने expression को statement के हिससे के के रूप मे देखा है। कयुकी रस्ट expression को मुख्य रूप से उपयोग करता है, expression और statement मे अंतर समझना जरूरी है। हर भाषा मे यह अंतर नही होता, तो चलिए इसे function मे expression की भूमिका समझते हैं।
 
-### Statements and Expressions
+### statement और expression
 
-We’ve actually already used statements and expressions. *Statements* are
-instructions that perform some action and do not return a value. *Expressions*
-evaluate to a resulting value. Let’s look at some examples.
+हमने statement और expression पहले ही इसतेमाल किया है। *statement* computer को आदेष देते हैं कुछ काम करने के लिये, लेकिन वह कोई जानकारी वापिस नही करते। *expression* जानकारी वापिस देते हैं। चलिए थोडे उसाहरण देखते हैं।
 
-Creating a variable and assigning a value to it with the `let` keyword is a
-statement. In Listing 3-1, `let y = 6;` is a statement:
+किसि चर को बनाकर उसमे `let` कीवर्ड के ज़रिए कोई जानकारी भरना एक statement है। निम्नलिखित उदाहरण मे `let y = 6;` एक स्टेटमेंट है:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -162,11 +117,9 @@ fn main() {
 
 <span class="caption">Listing 3-1: A `main` function declaration containing one statement</span>
 
-Function definitions are also statements; the entire preceding example is a
-statement in itself.
+function definition भी statement होते हैं; ऊपर का पूरा उदाहरण खुद से एक statement है।
 
-Statements do not return values. Therefore, you can’t assign a `let` statement
-to another variable, as the following code tries to do; you’ll get an error:
+statement जानकारी वापिस नही देते। इसलिए आप उन्हें `let` statement द्वारा किसि चर मे जानकारी नही भर सकते, जैसे निम्नलिखित कोड करने कि कोशिश कर रहा है; आपको एक एरर मिलेगा:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -176,7 +129,7 @@ fn main() {
 }
 ```
 
-When you run this program, the error you’ll get looks like this:
+जब आप प्रोग्राम चलाएंगे तो आपको ऐसा एरर मिलेगा:
 
 ```text
 $ cargo run
@@ -190,19 +143,9 @@ error: expected expression, found statement (`let`)
   = note: variable declaration using `let` is a statement
 ```
 
-The `let y = 6` statement does not return a value, so there isn’t anything for
-`x` to bind to. This is different from what happens in other languages, such as
-C and Ruby, where the assignment returns the value of the assignment. In those
-languages, you can write `x = y = 6` and have both `x` and `y` have the value
-`6`; that is not the case in Rust.
+`Let y = 6` स्टेटमेंट कोई जानकारी वापस नहीं करता है, इसलिए `x` मे बांधने के लिए कुछ भी नही है। यह अन्य भाषाओं में होने वाली घटनाओं से अलग है, जैसे कि C और Ruby, जहां असाइनमेंट (यानी `=` से संकेत होने वाला काम) असाइनमेंट का जानकारी लौटाता है। उन भाषाओं मे, आप `x = y = 6` लिख सकते हैं और दोनों` x` और `y` मे `6` भर जाएगा; रस्ट में ऐसा नहीं है।
 
-Expressions evaluate to something and make up most of the rest of the code that
-you’ll write in Rust. Consider a simple math operation, such as `5 + 6`, which
-is an expression that evaluates to the value `11`. Expressions can be part of
-statements: in Listing 3-1, the `6` in the statement `let y = 6;` is an
-expression that evaluates to the value `6`. Calling a function is an
-expression. Calling a macro is an expression. The block that we use to create
-new scopes, `{}`, is an expression, for example:
+एक्सप्रेशन किसी जानकारी मे बदलते हैं, और रस्ट का दूसरा महत्वपूर्ण हिस्सा हैं। गणित के भाग, जैसे `5 + 6` एक एक्सप्रेशन है जो `11` का रूप लेता है। एक्सप्रेशन किसी सटेटमेंट का हिस्सा बन सकता है: Listing 3-1 मे, `let y = 6` सटेटमेंट मे `6` एक एक्सप्रेशन है। फंक्षन को बुलाना एक एक्सप्रेशन है। मैकरो को बुलाना भी एक एक्सप्रेशन है। जब हम `{}` का प्रयोग कर कोड का बलांक (block) लिखते हैं, वह भी एक एक्सप्रेशन है, उदाहरण के लिये:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -219,7 +162,7 @@ fn main() {
 }
 ```
 
-This expression:
+मे यह एक्सप्रेशन:
 
 ```rust,ignore
 {
@@ -228,22 +171,11 @@ This expression:
 }
 ```
 
-is a block that, in this case, evaluates to `4`. That value gets bound to `y`
-as part of the `let` statement. Note the `x + 1` line without a semicolon at
-the end, which is unlike most of the lines you’ve seen so far. Expressions do
-not include ending semicolons. If you add a semicolon to the end of an
-expression, you turn it into a statement, which will then not return a value.
-Keep this in mind as you explore function return values and expressions next.
+एक block है,, जो यहां, `4` मे evaluate होता है। यह जानकारी `y` मे बंध जाता है, जो `let` सटेटमेंट का एक हिस्सा है। धयान कीजिए `x + 1` वाक्य के अंत मे `;` नही है, जो आपके देखे गए अधिकतर वक्यों से अलग है। एक्सप्रेशनों का अंत `;` से नही होता। अगर आप एक्सप्रेशन के अंत मे `;` डालें, तो वह सटेटमेंट बन जाता है। सटेटमेंट कोइ जानकारी वापिस नही करते। इस बात को ध्यान रखते हुए आगे जानकारी वापिस करने वाले फंकशन के बारे मे पढें।
 
-### Functions with Return Values
+### जानकारी वापिस करने वाले फंकशन
 
-Functions can return values to the code that calls them. We don’t name return
-values, but we do declare their type after an arrow (`->`). In Rust, the return
-value of the function is synonymous with the value of the final expression in
-the block of the body of a function. You can return early from a function by
-using the `return` keyword and specifying a value, but most functions return
-the last expression implicitly. Here’s an example of a function that returns a
-value:
+जिस कोड ने फंकशन को बुलाया, उस कोढ को फंकशन जानकारी वापिस कर सकते हैं। हम वापिस होने वाले जानकारी को नाम तो नही देते, लेकिन  उसके टइाप को ज़रुर डिक्लैर करते हैं, `->` के द्वारा। रस्ट मे, फ़ंकशन से वापिस की गई जानकारी और उसे बुलाने वाले एक्सप्रेशन की जानकारी, एक ही है। अप फ़ंकशन के अंत से पहले ही, `return` और उस्से संबंधित जानकारी, के सहित, फ़ंकशन से वापिस आ सकते हैं। लेकिन ज्यादातर फ़ंकशन अपना आखरी एक्सप्रेशन का जानकारी अपने आप वापिस कर देते है। नीचे उदाहरण है एक फ़ंकशन का जो जानकारी वापिस करता है:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -259,10 +191,7 @@ fn main() {
 }
 ```
 
-There are no function calls, macros, or even `let` statements in the `five`
-function—just the number `5` by itself. That’s a perfectly valid function in
-Rust. Note that the function’s return type is specified, too, as `-> i32`. Try
-running this code; the output should look like this:
+`five` फंकशन मे कोई फ़ंक्शन का बुलावा, कोइ मैक्रो का बुलावा, या `let` सटेटमेंट नही है। इसमे संख्या `5` बस अपने आप मे है। रस्ट मे इसे सही फ़ंकशन माना जाता है। ध्यान कीजिए कि यहां वापिस होने वाले जानकारी कि टाईप `-> i32` के द्वारा बताया गया है। इस कोड को चलाएं; निम्नलिखित आटपुट मिलना चाहिए:
 
 ```text
 $ cargo run
@@ -272,21 +201,15 @@ $ cargo run
 The value of x is: 5
 ```
 
-The `5` in `five` is the function’s return value, which is why the return type
-is `i32`. Let’s examine this in more detail. There are two important bits:
-first, the line `let x = five();` shows that we’re using the return value of a
-function to initialize a variable. Because the function `five` returns a `5`,
-that line is the same as the following:
+`five` फ़ंक्शन से वापिस होने वाली जानकारी `5` है, जिस वजह से जानकारी की टाइप `i32` है। चलो इसे गौर से देखें। दो मुख्य बाते हैं: पहले `let x = five();` हमे बताता है कि हम वापिस किए गए जानकारी को एक चर (`x`) के प्रथम जानकारी मे भरने के लिए प्रयोग कर रहे हैं। क्योंकी फंक्शन `five` `5` वापिस करता है, यह वाक्य का अर्थ यह है:
 
 ```rust
 let x = 5;
 ```
 
-Second, the `five` function has no parameters and defines the type of the
-return value, but the body of the function is a lonely `5` with no semicolon
-because it’s an expression whose value we want to return.
+दूसरी बात, `five` फ़ंक्शन मे कोइ पैरामीटर नही है, और वह वापिस होने वाली टाइप को अलग से बताता है। फ़ंक्शन का कोड सिर्फ़ एक `5` है बिना किसी `;` के क्योंकी वह एक एक्सप्रेशन है जिसकी जानकारी हम वापिस करना चाहते हैं।
 
-Let’s look at another example:
+चलो एक और उदाहरण देखते हैं:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -302,9 +225,7 @@ fn plus_one(x: i32) -> i32 {
 }
 ```
 
-Running this code will print `The value of x is: 6`. But if we place a
-semicolon at the end of the line containing `x + 1`, changing it from an
-expression to a statement, we’ll get an error.
+चलाने पर, यह `The value of x is: 6` आउटपुट देता है। लेकिन अगर हम `x + 1` के अंत पर एक `;` लिख दें, तो वह एक्सप्रेशन से सटेटमेंट बन जाता है। यहां हमे एरर मिलता है।
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -320,7 +241,7 @@ fn plus_one(x: i32) -> i32 {
 }
 ```
 
-Compiling this code produces an error, as follows:
+को कंपाइल करने पर यह एरर मिलेगा:
 
 ```text
 error[E0308]: mismatched types
@@ -337,10 +258,5 @@ error[E0308]: mismatched types
              found type `()`
 ```
 
-The main error message, “mismatched types,” reveals the core issue with this
-code. The definition of the function `plus_one` says that it will return an
-`i32`, but statements don’t evaluate to a value, which is expressed by `()`,
-the empty tuple. Therefore, nothing is returned, which contradicts the function
-definition and results in an error. In this output, Rust provides a message to
-possibly help rectify this issue: it suggests removing the semicolon, which
-would fix the error.
+मुख्य एरर “mismatched types” कोड की सबसे बडी गलती बताता है। फ़ंकशन `plus_one` का डेफिनीशण कहता है कि फ़ंक्शन
+`i32` वापिस करेगा, लेकिन सटेटमेंट जानकारी मे नही बदलते (जिसे `()` से दिखाया जाता है), इसलिए कोइ जानकारी वापिस नही होती, जो फ़ंक्शन डेफ़िनीशन से नही मिलती। इसका नतीजा एरर है। आउटपुट मे, रस्ट एरर का एक विकल्प भी बताता है (ध्यान रखें, रस्ट के बताए गए विकल्प सिर्फ सुझाव हैं। वह हमेशा सही विक्लप नही होते): सुझाव है कि `;` हटा दें, जिससे एरर चला जाएगा।

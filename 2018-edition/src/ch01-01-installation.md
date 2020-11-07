@@ -5,7 +5,7 @@
 संभालने के लिये बना है। इस के लिये आप को इंटर्नेट की ज़रूरत होगी।
 
 > अगर आप किसी कारण से `rustup` का उप्योग नही करना चाहते, तो क्रिपया और विकल्पों
-> के liye [the Rust installation page](https://www.rust-lang.org/install.html)
+> के लिए [the Rust installation page](https://www.rust-lang.org/install.html)
 > देखें।
 
 निम्नलिखित कदम रस्ट के स्थिर कंपाइलर रूप चलायेंगे। रस्ट समाज यह वादा कर्ता है की
