@@ -1,19 +1,18 @@
-## Comments
+## "विवरण" (comment)
 
-All programmers strive to make their code easy to understand, but sometimes
-extra explanation is warranted. In these cases, programmers leave notes, or
-*comments*, in their source code that the compiler will ignore but people
-reading the source code may find useful.
+सारे परोगरांमर चाहते हैं कि वह कोड ऐसा लिखें कि आसानी से समझ मे आ जाय। फिर भी,
+कभी कभी सपष्टिकरण की जरूरत पदती है। ऐसे स्थिती मे, परोगरामर कोड मे विवरण लिख
+देते हैं, जो कंपाइलर नज़रअंदाज कर देता है, लेकिन इंसानों को कोड पढते समय सहायना
+मिल सकता है।
 
-Here’s a simple comment:
+विवरण का उदाहरण:
 
 ```rust
 // Hello, world.
 ```
 
-In Rust, comments must start with two slashes and continue until the end of the
-line. For comments that extend beyond a single line, you’ll need to include
-`//` on each line, like this:
+रस्ट मे विवरण `//` से शुरू होते हैं और लाइन के अंत तक जारी रहते हैं। अगर आप
+चाहते हैं कि विवरण एक लाइन से अधिक चले, तो हर लाइन के आगे `//` जोडें, ऐसे:
 
 ```rust
 // So we’re doing something complicated here, long enough that we need
@@ -21,7 +20,7 @@ line. For comments that extend beyond a single line, you’ll need to include
 // explain what’s going on.
 ```
 
-Comments can also be placed at the end of lines containing code:
+विवरण को कोड वाले लाइन के अंत पर भि रख सकते हैं:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -31,8 +30,9 @@ fn main() {
 }
 ```
 
-But you’ll more often see them used in this format, with the comment on a
-separate line above the code it’s annotating:
+लेकिन ज़्यादातर आप विवरण को इस रूप मे देखेंगे, जहां वह अलग लाइन मे लिखा हो।
+प्रथानुसार, विवरण को उस कोड के ऊपरी लाइन मे लिखा जाता है, जिस कोड कि वह व्याखया
+दे रहा हो।
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -43,5 +43,4 @@ fn main() {
 }
 ```
 
-Rust also has another kind of comment, documentation comments, which we’ll
-discuss in Chapter 14.
+रस्ट मे एक और प्रकार से विवरण लिख सकते हैं, जो हम अध्याय 14 मे देखेंगे।
