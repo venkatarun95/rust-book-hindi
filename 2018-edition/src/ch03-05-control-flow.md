@@ -1,19 +1,12 @@
-## Control Flow
+## कोड के बहाव पर नियंत्रण
 
-Deciding whether or not to run some code depending on if a condition is true
-and deciding to run some code repeatedly while a condition is true are basic
-building blocks in most programming languages. The most common constructs that
-let you control the flow of execution of Rust code are `if` expressions and
-loops.
+ज्यादातर परोगरामिंग भा‍षा मे दो महत्वपूरण भाग होते हैं: एक, किसी "कंडि‍षन" (condition) या शरथ के आधार पर यह तै करना कि कोड को किसी हिस्से चलाना है कि नही। दो, किसी कोड के हिस्से को बार-बार चलाना जब तक कि कोइ कंडिषन सच रहे। रस्ट मे यह नियंत्रन आम तौर पर `if` एक्सप्रेशन और loop के द्वारा होता है।
 
-### `if` Expressions
+### `if` एक्सप्रेशन
 
-An `if` expression allows you to branch your code depending on conditions. You
-provide a condition and then state, “If this condition is met, run this block
-of code. If the condition is not met, do not run this block of code.”
+`if` एक्सप्रेशन आपको अपको यह कहने देता है कि, "अगर ये कंडिषन सच हुआ तो कोड के इस भाग को चलाओ, वरना इस दूसरे भाग को"
 
-Create a new project called *branches* in your *projects* directory to explore
-the `if` expression. In the *src/main.rs* file, input the following:
+`if` एक्सप्रेशन को देखने के लिए, अपने *projects* फ़ोलडर मे *branches* नाम से एक नया प्राजेक्ट बनाओ। उसके *src/main.rs* फ़ाईल मे, यह लिखो:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -31,22 +24,12 @@ fn main() {
 
 <!-- NEXT PARAGRAPH WRAPPED WEIRD INTENTIONALLY SEE #199 -->
 
-All `if` expressions start with the keyword `if`, which is followed by a
-condition. In this case, the condition checks whether or not the variable
-`number` has a value less than 5. The block of code we want to execute if the
-condition is true is placed immediately after the condition inside curly
-brackets. Blocks of code associated with the conditions in `if` expressions are
-sometimes called *arms*, just like the arms in `match` expressions that we
-discussed in the “Comparing the Guess to the Secret Number” section of
-Chapter 2.
+सारे `if` एक्सप्रेशन `if` शब्द से आरंभ होते हैं, और उसके आगे एक कंडिषन लिखा जाता है। ऊपर के कोड मे कंडिषन यह
+देखता है कि `number` मे जानकारी `5` है कि नही। कंडिषण के तुरंत बाद, हम उस कोढ बलांक को लिखते हैं जो चाहते हैं कि कंडिषण के सच होने पर चले। `if` एक्सप्रेशन से संबंधित कोड बलांक को हम कभी कभी *हाथ* (arm) भी बोलते हैं, ठीक उसी तरह जैसे हमने `match` एक्सप्रेशन मे देखा था अधयाय 2 मे।
 
-Optionally, we can also include an `else` expression, which we chose
-to do here, to give the program an alternative block of code to execute should
-the condition evaluate to false. If you don’t provide an `else` expression and
-the condition is false, the program will just skip the `if` block and move on
-to the next bit of code.
+हम चाहें तो, `if` के साथ `else` एक्सप्रेशन भी जोड सकते हैं। इसका उपयोग हम ऊपर करते हैं एक कोड बलांक लीखने के लिये जो तब चलेगा, जब कंडीशन सच ना हो। अगर `else` नही लिखा गया हो, और कंडिषन गलत है, तो प्रोग्राम `if` बलांक को छोडकर आगे बढ जाएगा।
 
-Try running this code; you should see the following output:
+आप यह कोड चलाएंगे तो यह देखेंगे।
 
 ```text
 $ cargo run
@@ -56,14 +39,13 @@ $ cargo run
 condition was true
 ```
 
-Let’s try changing the value of `number` to a value that makes the condition
-`false` to see what happens:
+देखते हैं क्या होता है अगर हम `number` को बदल दें ताकी कंडिषन जलत (`false`) हो।
 
 ```rust,ignore
 let number = 7;
 ```
 
-Run the program again, and look at the output:
+फिरसे प्रोगराम चलाएं, तो यह दिखेगा।
 
 ```text
 $ cargo run
@@ -73,8 +55,7 @@ $ cargo run
 condition was false
 ```
 
-It’s also worth noting that the condition in this code *must* be a `bool`. If
-the condition isn’t a `bool`, we’ll get an error. For example:
+ध्यान दें कि कंडिषन को `bool` होना ज़रूरी है। नही तो एरर मिलेगा। उदाहरण से:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -88,8 +69,7 @@ fn main() {
 }
 ```
 
-The `if` condition evaluates to a value of `3` this time, and Rust throws an
-error:
+इस बार `if` कंडिषन की जानकारी `3` है, और रस्ट कंपाईलर एरर देती है।
 
 ```text
 error[E0308]: mismatched types
@@ -102,12 +82,7 @@ error[E0308]: mismatched types
              found type `{integer}`
 ```
 
-The error indicates that Rust expected a `bool` but got an integer. Unlike
-languages such as Ruby and JavaScript, Rust will not automatically try to
-convert non-Boolean types to a Boolean. You must be explicit and always provide
-`if` with a Boolean as its condition. If we want the `if` code block to run
-only when a number is not equal to `0`, for example, we can change the `if`
-expression to the following:
+एरर कहता है कि रस्ट कंपाईलर अपेक्षा कर रही थी कि कंडिषन मे `bool` मिलेगा, लिकिन `integer` (संख्या) मिल गया। Ruby और Javascript के विपरीत, रस्ट अपने आप चीज़ों को `bool` मे नही बदलता। आपको स्पष्ट होकर कंडिषन मे `bool` देना होगा। उदाहरण से, यदी चाहें कि `if` सिर्फ़ नभी चले जब `number` मे `0` न हो, तो ऐसे लिख सकते हैं।
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -121,12 +96,11 @@ fn main() {
 }
 ```
 
-Running this code will print `number was something other than zero`.
+यह चलाने पर दिखेगा: `number was something other than zero`.
 
-#### Handling Multiple Conditions with `else if`
+#### `else if` के साथ अनेक कंडिषन
 
-You can have multiple conditions by combining `if` and `else` in an `else if`
-expression. For example:
+आप `else if` को प्रयोग करके, अनेक कंडिषन लिख सकते हैं। उदाहरण से:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -146,8 +120,7 @@ fn main() {
 }
 ```
 
-This program has four possible paths it can take. After running it, you should
-see the following output:
+यह प्रोग्राम चार अलग-अलग प्रकार से चल सकता है। चलाने पर आपको यह दिखना चाहिए:
 
 ```text
 $ cargo run
@@ -157,16 +130,9 @@ $ cargo run
 number is divisible by 3
 ```
 
-When this program executes, it checks each `if` expression in turn and executes
-the first body for which the condition holds true. Note that even though 6 is
-divisible by 2, we don’t see the output `number is divisible by 2`, nor do we
-see the `number is not divisible by 4, 3, or 2` text from the `else` block.
-That’s because Rust only executes the block for the first true condition, and
-once it finds one, it doesn’t even check the rest.
+चलते समय, यह प्रोग्राम हर `if` एक्सपरेशन को देखता है, और ऐसे पहली कोड बलांक को चला देता है जिस के लिए कंडिषन सच हो। ध्यान दें, कि 6, 2 से विभाज्य है, लेकिन इसके बावजूद हम आउटपुट मे `number is divisible by 2` या `number is not divisible by 4, 3 or 2` नही देखते। यह इस लिए क्योंकी रस्ट सिर्फ़ पहली ऐसी बलांक को चलाता है जिसकी कंडिषन सच हो। ऐसी बलांक मिलने के बाद, बाकी देखता तक नही है।
 
-Using too many `else if` expressions can clutter your code, so if you have more
-than one, you might want to refactor your code. Chapter 6 describes a powerful
-Rust branching construct called `match` for these cases.
+बहुत सारे `else if` एक्सप्रेसन प्रयोग करने पर, आपके कोड को पढने मे मुशकिल हो सकती है। इस लिये, एक से अधिक होने पर, आप अपने कोड को ऐसे लिखने कि कोशिश कर सकते हैं कि पढने मे आसानी हो। अधयाय 6 मे हम यह करने के लिये एक बहुत ही अच्छा `match` एक्सपरेशन के बारे मे सीखेंगे।
 
 #### Using `if` in a `let` Statement
 
