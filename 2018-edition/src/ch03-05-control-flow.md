@@ -69,7 +69,7 @@ fn main() {
 }
 ```
 
-इस बार `if` कंडिषन की जानकारी `3` है, और रस्ट कंपाईलर एरर देती है।
+इस बार `if` कंडिषन की जानकारी `3` है, और रस्ट कंपाइलर एरर देती है।
 
 ```text
 error[E0308]: mismatched types
@@ -82,7 +82,7 @@ error[E0308]: mismatched types
              found type `{integer}`
 ```
 
-एरर कहता है कि रस्ट कंपाईलर अपेक्षा कर रही थी कि कंडिषन मे `bool` मिलेगा, लिकिन `integer` (संख्या) मिल गया। Ruby और Javascript के विपरीत, रस्ट अपने आप चीज़ों को `bool` मे नही बदलता। आपको स्पष्ट होकर कंडिषन मे `bool` देना होगा। उदाहरण से, यदी चाहें कि `if` सिर्फ़ नभी चले जब `number` मे `0` न हो, तो ऐसे लिख सकते हैं।
+एरर कहता है कि रस्ट कंपाइलर अपेक्षा कर रही थी कि कंडिषन मे `bool` मिलेगा, लिकिन `integer` (संख्या) मिल गया। Ruby और Javascript के विपरीत, रस्ट अपने आप चीज़ों को `bool` मे नही बदलता। आपको स्पष्ट होकर कंडिषन मे `bool` देना होगा। उदाहरण से, यदी चाहें कि `if` सिर्फ़ नभी चले जब `number` मे `0` न हो, तो ऐसे लिख सकते हैं।
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -134,77 +134,62 @@ number is divisible by 3
 
 बहुत सारे `else if` एक्सप्रेसन प्रयोग करने पर, आपके कोड को पढने मे मुशकिल हो सकती है। इस लिये, एक से अधिक होने पर, आप अपने कोड को ऐसे लिखने कि कोशिश कर सकते हैं कि पढने मे आसानी हो। अधयाय 6 मे हम यह करने के लिये एक बहुत ही अच्छा `match` एक्सपरेशन के बारे मे सीखेंगे।
 
-#### Using `if` in a `let` Statement
+#### `let` वाक्य मे `if` का प्रयोग
 
-Because `if` is an expression, we can use it on the right side of a `let`
-statement, as in Listing 3-2:
-
+क्योंकी `if` एक एक्सप्रेसन है, हम उसे `let` के दायें हात की तरफ़ इसतेमाल कर सकते हैं। उदाहरण से:
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
 fn main() {
-    let condition = true;
-    let number = if condition {
-        5
-    } else {
-        6
-    };
+    let कंडिषन = true;
+    let संख्या = if कंडिषन { 5 } else { 6 };
 
-    println!("The value of number is: {}", number);
+    println!("संख्या की जानकारी: {}", संख्या);
+}
 }
 ```
 
-<span class="caption">Listing 3-2: Assigning the result of an `if` expression
-to a variable</span>
+<span class="caption">Listing 3-2: `if` से मिले जानकारी को किसी चर (यहां, `संख्या`) मे भरना।</span>
 
-The `number` variable will be bound to a value based on the outcome of the `if`
-expression. Run this code to see what happens:
+`if` एक्सप्रेसन के अनुसार, `संख्या` चर मे जानकारी भरी जायगी। कोड चला के देखें कि क्या होता है:
 
 ```text
 $ cargo run
    Compiling branches v0.1.0 (file:///projects/branches)
     Finished dev [unoptimized + debuginfo] target(s) in 0.30 secs
      Running `target/debug/branches`
-The value of number is: 5
+संख्या की जानकारी: 5
 ```
 
-Remember that blocks of code evaluate to the last expression in them, and
-numbers by themselves are also expressions. In this case, the value of the
-whole `if` expression depends on which block of code executes. This means the
-values that have the potential to be results from each arm of the `if` must be
-the same type; in Listing 3-2, the results of both the `if` arm and the `else`
-arm were `i32` integers. If the types are mismatched, as in the following
-example, we’ll get an error:
+याद करें की कोड बलांक कि जानकारी उनके आखरी एक्सप्रेशन के बराबर होती है, और संख्या अपने आप मे एक्सप्रेसन होते हैं। यहां, पुरे `if` एक्सप्रेसन की जानकारी निर्भर है की कौंसी कोड बलांक चली। इसका अर्थ यह है कि `if` एक्सपरेशन के सारे कोड बलांक का टाइप एक ही होना चाहिये, क्योंकी उसकी जानकारी कोई भी बलांक से आ सकती है। उपर लिखे कोड मे, दोनो हिस्सों के टाइप `i32` हैं। अगर टाइप अलग-अलग हों, जैसे कि नीचे वाली उदाहरण मे है, तो हमे एरर मिलेगा:
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust,ignore
 fn main() {
-    let condition = true;
+    let कंडिशन = true;
 
-    let number = if condition {
+    let संख्या = if कंडिेशन {
         5
     } else {
-        "six"
+        "छह"
     };
 
-    println!("The value of number is: {}", number);
+    println!("संख्या की जानकारी: {}", संख्या);
 }
 ```
 
-When we try to compile this code, we’ll get an error. The `if` and `else` arms have
-value types that are incompatible, and Rust indicates exactly where to find the
-problem in the program:
+इस कोड को कंपाइल करने पर एरर मिलता है। `if` और `else` के टाइप अलग-अलग हैं, और रस्ट कंपाइलर हमे बता देती है कि समस्या कहां है।
 
 ```text
 error[E0308]: if and else have incompatible types
  --> src/main.rs:4:18
   |
-4 |       let number = if condition {
+4 |       let संख्या = if कंडिशन {
   |  __________________^
 5 | |         5
 6 | |     } else {
-7 | |         "six"
+7 | |         "छह"
 8 | |     };
   | |_____^ expected integral variable, found &str
   |
@@ -212,41 +197,31 @@ error[E0308]: if and else have incompatible types
              found type `&str`
 ```
 
-The expression in the `if` block evaluates to an integer, and the expression in
-the `else` block evaluates to a string. This won’t work because variables must
-have a single type. Rust needs to know at compile time what type the `number`
-variable is, definitively, so it can verify at compile time that its type is
-valid everywhere we use `number`. Rust wouldn’t be able to do that if the type
-of `number` was only determined at runtime; the compiler would be more complex
-and would make fewer guarantees about the code if it had to keep track of
-multiple hypothetical types for any variable.
+`if` बलांक का एक्सप्रेसन integer है और `else` बलांक का एक्सप्रेशन string है। यह नही काम करेगा क्योंकी दोनो का टाइप एक होना जरूरी है। कंपाइल करते समय रस्ट कंपाइलर को रह जानना ज़रूरी है की `संख्या` चर का क्या टाइप है, ताकी वह कंपाइल करते समय ही यह निस्चित कर सकती है कि `संख्या` का जहा भी प्रयोग हो रहा है, वहा उसका टाइप सही है। अगर `संख्या` का टाइप कंपाइल करते समह निशचित ना होकर सिर्फ़ कोड चलाते समय निशचित हो, तो कंपाइलर और जटिल हो जायगी और कोड मे गलतियां कम निकाल पाएगी। यह इसलिए क्योंकी उसे किसी भी चर के लिए अनेक टाइप का ध्यान रखना होगा।
 
-### Repetition with Loops
+### कोड को बार-बार चलाना
 
-It’s often useful to execute a block of code more than once. For this task,
-Rust provides several *loops*. A loop runs through the code inside the loop
-body to the end and then starts immediately back at the beginning. To
-experiment with loops, let’s make a new project called *loops*.
+अक्सर एक कोड बलांक को बार-बार चलाने से फ़ायदा होता है। इस काम के लिए रस्ट मे कई *लूप* (loop) हैं। लूप अपने कोड बलांक को चलाकर, फिर से शुरुआत से चलाना आरंभ करते हैं। लूप सीखने के लिए चलो *loops* नामक एक नया प्रोग्राम बनाते हैं।
 
-Rust has three kinds of loops: `loop`, `while`, and `for`. Let’s try each one.
+रस्ट मे तीन तरह के लूप हैं: `loop`, `while`, और `for`। चलो एक-एक करके सबको परखते हैं।
 
-#### Repeating Code with `loop`
+#### `loop` का उप्योग
 
-The `loop` keyword tells Rust to execute a block of code over and over again
-forever or until you explicitly tell it to stop.
+`loop` रस्ट को आदेश देता है कि वह उसके अगले कोड बलांक को बार-बार चलाए, जब तक आप उसे स्पष्ट तौर से रुकने ना बोलते।
 
-As an example, change the *src/main.rs* file in your *loops* directory to look
-like this:
+उदाहरण से, *loops* फ़ोलडर मे *src/main.rs* फ़ाइल को ऐसे बदलो कि निम्नलिखित कोड जैसे दिखे:
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust,ignore
 fn main() {
     loop {
-        println!("again!");
+        println!("फ़िरसे!");
     }
 }
 ```
+
+प्रोग्राम चलाने पर हम देखेंगे कि `फ़िरसे!` बार-बार लिखता है। अधिकतर टरमिनल (terminal) <span class="keystroke">ctrl-c</span> द्वारा आपको किसी प्रोग्राम को रोकने देते हैं। कोशिश कीजिए:
 
 When we run this program, we’ll see `again!` printed over and over continuously
 until we stop the program manually. Most terminals support a keyboard shortcut,
@@ -258,84 +233,65 @@ $ cargo run
    Compiling loops v0.1.0 (file:///projects/loops)
     Finished dev [unoptimized + debuginfo] target(s) in 0.29 secs
      Running `target/debug/loops`
-again!
-again!
-again!
-again!
-^Cagain!
+फ़िरसे!
+फ़िरसे!
+फ़िरसे!
+फ़िरसे!
+^Cफ़िरसे!
 ```
 
-The symbol `^C` represents where you pressed <span class="keystroke">ctrl-c
-</span>. You may or may not see the word `again!` printed after the `^C`,
-depending on where the code was in the loop when it received the halt signal.
+`^C` उस समय का संकेत करता है जब आपने <span class="keystroke">ctrl-c</span> दबाया। हो सकता है कि आपको `फ़िरसे` दिखे या ना दिखे, जो इस पर निर्भर करता है कि लूप मे कोड काहां थी जब आपने <span class="keystroke">ctrl-c</span> दबाकर प्रोग्राम के गती को रोका।
 
-Fortunately, Rust provides another, more reliable way to break out of a loop.
-You can place the `break` keyword within the loop to tell the program when to
-stop executing the loop. Recall that we did this in the guessing game in the
-“Quitting After a Correct Guess” section of Chapter 2 to exit the
-program when the user won the game by guessing the correct number.
+रस्ट एक और, ज्यादा भरोसेमंद, लूप से बाहर निकलने का तरीका देती है। आप कहीं भी `break` लिखकर रस्ट को बता सकते हैं कि लूप से बाहर कब निकलना है। याद करें कि हमने यह व्यवसथा अध्याय 2: "अंक अनुमान खेल बनाना" वाले हिस्से मे उपयोग किया था प्रोग्राम को तब बंद करने के लिए जब इंसान ने संख्या का सही अनुमान लगा लिया हो।
 
+#### लूप से बाहर आना
 
-#### Returning from loops
-
-One of the uses of a `loop` is to retry an operation you know can fail, such as
-checking if a thread completed its job. However, you might need to pass the
-result of that operation to the rest of your code. If you add it to the `break`
-expression you use to stop the loop, it will be returned by the broken loop:
+`loop` का एक मुख्य उपयोग है किसी कार्य को करने की कोशिश तब तक करते रहना जब तक वह सफ़ल न हो जाय। उदाहरण से, देखना कि किसी थ्रेड (thread) ने अपना काम खतम किया कि नही। यह करते समय आपको उस कार्य के नतीजे के बारे मे बाकी के प्रोग्राम को बताने कि ज़रूरत पड सकती है। इस स्थिती मे, लूप खतम करते समय, आप उस नतीजे की जानकारी `break` मे जोड सकते है। ऐसा करेंगे तो वह लूप एक्सप्रेशन का जानकारी बन जाएगा।
 
 ```rust
 fn main() {
-    let mut counter = 0;
+    let mut संख्या = 0;
 
-    let result = loop {
-        counter += 1;
+    let नतीजा = loop {
+        संख्या += 1;
 
-        if counter == 10 {
-            break counter * 2;
+        if संख्या == 10 {
+            break संख्या * 2;
         }
     };
 
-    assert_eq!(result, 20);
+    assert_eq!(नतीजा, 20);
 }
 ```
 
-#### Conditional Loops with `while`
+#### `while` लूप का प्रयोग
 
-It’s often useful for a program to evaluate a condition within a loop. While
-the condition is true, the loop runs. When the condition ceases to be true, the
-program calls `break`, stopping the loop. This loop type could be implemented
-using a combination of `loop`, `if`, `else`, and `break`; you could try that
-now in a program, if you’d like.
+अक्सर लूप के अंदर किसि कंडिषन पर निगरानी रखने से फ़ायदा होता है। जब तक कंडिषन सच है, तब तक लूप चलेगी। कंडिषन के गलत होने पर, प्रोग्राम `break` चलाकर लूप से बाहर आ सकती है। इस प्रकार के लूप को `loop`, `if` और `break` द्वारा लखा जा सकता है; चाहें तो आप यह अब लिखकर देख सकते हैं।
 
-However, this pattern is so common that Rust has a built-in language construct
-for it, called a `while` loop. Listing 3-3 uses `while`: the program loops
-three times, counting down each time, and then, after the loop, it prints
-another message and exits.
+लेकिन इस तरह के लूप प्रोग्राम मे इतने बार लिखे जाते हैं, कि रस्ट मे इसके लिये `while` नामक एक खास व्यवसथा है। निम्नलिखित प्रोग्राम 3 बार तूप चलाती है, हर बार एक संदेश लिखकर `संख्या` को कम करते हुए, और लूप के बाद एक और संदेश `बढिया!!!` लिखकर खतम कर देती है।
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
 fn main() {
-    let mut number = 3;
+    let mut संख्या = 3;
 
-    while number != 0 {
-        println!("{}!", number);
+    while संख्या != 0 {
+        println!("{}!", संख्या);
 
-        number = number - 1;
+        संखया = संख्या - 1;
     }
 
-    println!("LIFTOFF!!!");
+    println!("बढिया!!!");
 }
 ```
 
-<span class="caption">Listing 3-3: Using a `while` loop to run code while a
-condition holds true</span>
+<span class="caption">Listing 3-3: `while` लूप का उपयोग करके, कोड को तब तक चलाना जब तक एक कंडिशन (`संख्या != 0`) सच है।</span>
 
-This construct eliminates a lot of nesting that would be necessary if you used
-`loop`, `if`, `else`, and `break`, and it’s clearer. While a condition holds
-true, the code runs; otherwise, it exits the loop.
+यह व्यवसथा हमे `loop`, `if`, `else` औेर `break` बचाती है, और कोड को और आसानी से पढने लायक बना देती है।
 
-#### Looping Through a Collection with `for`
+#### `for` का प्रयोग
+
 
 You could use the `while` construct to loop over the elements of a collection,
 such as an array. For example, let’s look at Listing 3-4:

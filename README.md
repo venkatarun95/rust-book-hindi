@@ -2,17 +2,16 @@
 
 [![Build Status](https://travis-ci.org/rust-lang/book.svg?branch=master)](https://travis-ci.org/rust-lang/book)
 
-अनुवाद नोट: किसी भी तटनीकी अनुवाद मे तकनीकी शब्द प्रयोग होते हैं। इस अनुवाग मे
-कोशिश रही है कि हर जगह सुसंगत रुप से शब्दों का प्रयोग हो। इस अनुवाद मे प्रयोग
+अनुवाद चेतना: किसी भी तटनीकी अनुवाद मे तकनीकी शब्द प्रयोग होते हैं। इस अनुवाग मे
+कोशिश रही है कि हर जगह एक चिज के लिए हर जगह एक ही शब्द का प्रयोग हो। इस अनुवाद मे प्रयोग
 किए गय तकनीकी शब्दों का शब्दकोष आप [glossary.csv](auto_translate/glossary.csv)
-मे देख सकते हैं। अभि सिर्फ कुछ अधयायों का अनुवाद किया है।
+मे देख सकते हैं। अभि सिर्फ कुछ शुरुअत के अधयायों का अनुवाद किया है।
 
 आप [सुची](2018-edition/src/SUMMARY.md) से पढना शुरू कर सकते हैं। सारे अधयाय
 [2018-edition/src](https://github.com/venkatarun95/rust-book-hindi/blob/master/2018-edition/src/)
 फ़ोल्डर मे हैं।
 
-मेने हिंदी मे बोहोत पहले नही लिखा है, और तकनीकी विषयों पर तो बिलकुल नही। आपको
-गलतियां शरूर मिलेंगी। सुझाव हो, तो क्रपया दीजिए।
+मुझे हिंदी मे लिखने कि ज्यादा आदत नही है, और तकनीकी विषयों पर तो बिलकुल नही। गलनियों के लिए खेद है, और प्रार्थना करता हूं कि उन्के बारे मे हमे यहां बताएं: [https://github.com/venkatarun95/rust-book-hindi/issues](https://github.com/venkatarun95/rust-book-hindi/issues)
 
 
 # The Rust Programming Language
@@ -110,7 +109,7 @@ The first edition is frozen, and is not accepting any changes at this time.
 
 ### Translations
 
-We'd especially love help translating the second edition or 2018 edition of the book! See the
+बWe'd especially love help translating the second edition or 2018 edition of the book! See the
 [Translations] label to join in efforts that are currently in progress. Open
 a new issue to start working on a new language! We're waiting on [mdbook
 support] for multiple languages before we merge any in, but feel free to
