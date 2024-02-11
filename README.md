@@ -1,17 +1,17 @@
-# रस्ट परोगरांमिंग भा‍षा
+# रस्ट प्रोग्रामिंग भा‍षा
 
 [![Build Status](https://travis-ci.org/rust-lang/book.svg?branch=master)](https://travis-ci.org/rust-lang/book)
 
-अनुवाद चेतना: किसी भी तटनीकी अनुवाद मे तकनीकी शब्द प्रयोग होते हैं। इस अनुवाग मे
-कोशिश रही है कि हर जगह एक चिज के लिए हर जगह एक ही शब्द का प्रयोग हो। इस अनुवाद मे प्रयोग
+अनुवाद चेतना: किसी भी तकनीकी अनुवाद मे तकनीकी शब्द प्रयोग होते हैं। इस अनुवाद मे
+कोशिश यह रही है कि हर जगह एक चीज़ के लिए हर जगह एक ही शब्द का प्रयोग हो। इस अनुवाद मे प्रयोग
 किए गय तकनीकी शब्दों का शब्दकोष आप [glossary.csv](auto_translate/glossary.csv)
-मे देख सकते हैं। अभि सिर्फ कुछ शुरुअत के अधयायों का अनुवाद किया है।
+मे देख सकते हैं। अभी सिर्फ कुछ शुरुआत के अधयायों का अनुवाद किया है।
 
-आप [सुची](2018-edition/src/SUMMARY.md) से पढना शुरू कर सकते हैं। सारे अधयाय
+आप [सुची](2018-edition/src/SUMMARY.md) से पढ़ना शुरू कर सकते हैं। सारे अधयाय
 [2018-edition/src](https://github.com/venkatarun95/rust-book-hindi/blob/master/2018-edition/src/)
 फ़ोल्डर मे हैं।
 
-मुझे हिंदी मे लिखने कि ज्यादा आदत नही है, और तकनीकी विषयों पर तो बिलकुल नही। गलनियों के लिए खेद है, और प्रार्थना करता हूं कि उन्के बारे मे हमे यहां बताएं: [https://github.com/venkatarun95/rust-book-hindi/issues](https://github.com/venkatarun95/rust-book-hindi/issues)
+मुझे हिंदी मे लिखने कि ज्यादा आदत नही है, और तकनीकी विषयों पर तो बिलकुल नही। गलतियों के लिए खेद है, और प्रार्थना करता हूं कि उन्के बारे मे हमे यहां बताएं: [https://github.com/venkatarun95/rust-book-hindi/issues](https://github.com/venkatarun95/rust-book-hindi/issues)
 
 
 # The Rust Programming Language
